@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/11/12 19:26:20 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/13 18:16:14 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 ** Toutes les tailles sont en octets.
 ** On part du principe qu'un int fait 32 bits. Est-ce vrai chez vous ?
 */
-#ifndef	OP_H
-# define OP_H
 # define IND_SIZE				2
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
@@ -56,10 +54,10 @@
 
 typedef char					t_arg_type;
 
-#	define T_REG				1
-#	define T_DIR				2
-#	define T_IND				4
-#	define T_LAB				8
+# define T_REG					1
+# define T_DIR					2
+# define T_IND					4
+# define T_LAB					8
 
 /*
 **
@@ -76,32 +74,3 @@ typedef struct					header_s
 	unsigned int				prog_size;
 	char						comment[COMMENT_LENGTH + 1];
 }								header_t;
-
-/*********************/
-/* ASSEMBLER'S FILES */
-/*********************/
-
-# include <fcntl.h>
-
-typedef struct					s_cw
-{
-	int							*line;
-	int							
-}								t_cw;
-
-
-/*
-** main.c
-*/
-
-void							init_struct(t_cw *corewar);
-void							output(int var);
-
-/*
-** arg_reader.c
-*/
-
-void							arg_reader(char **av);
-void							valid_arg(char **av);
-
-#endif

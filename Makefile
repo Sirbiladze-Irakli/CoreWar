@@ -6,13 +6,15 @@
 #    By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 15:03:28 by jormond-          #+#    #+#              #
-#    Updated: 2019/11/12 15:30:50 by jormond-         ###   ########.fr        #
+#    Updated: 2019/11/13 18:18:15 by jormond-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ASM = asm
 
-INC = ./inc/op.h
+INC = ./inc/op.h ./inc/asm.h
+
+LIB = libft/libft.a
 
 # FLAGS = -Wall -Wextra -Werror
 
@@ -25,7 +27,8 @@ ASMOBJ = $(addprefix asmobj/,$(ASMFILES:.c=.o))
 all : $(ASM)
 
 $(ASM) : $(ASMOBJ)
-	@gcc -o $(ASM) $(ASMOBJ)
+	@make -C libft/
+	@gcc -o $(ASM) $(ASMOBJ) $(LIB)
 
 asmobj/%.o: asmsrc/%.c $(INC)
 	@mkdir -p asmobj/
@@ -38,3 +41,4 @@ clean :
 fclean : clean
 	@make fclean -C libft
 	@rm -f $(ASM)
+re : fclean all
