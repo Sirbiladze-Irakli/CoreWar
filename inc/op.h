@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2019/11/13 18:16:14 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/19 17:59:43 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@
 # define COMMENT_CHAR			'#'
 # define ALT_COMMENT_CHAR		';'
 # define LABEL_CHAR				':'
-# define DIRECT_CHAR			'%'
+# define DIRECT_CHAR			'%'	
 # define SEPARATOR_CHAR			','
 
 # define LABEL_CHARS			"abcdefghijklmnopqrstuvwxyz_0123456789"

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/15 14:43:31 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/01 13:20:17 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/19 18:13:46 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 typedef struct		s_list
 {
 	void			*content;
+	
 	size_t			content_size;
 	struct s_list	*next;
 }					t_list;
