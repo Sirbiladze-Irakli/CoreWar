@@ -6,7 +6,7 @@
 #    By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 15:03:28 by jormond-          #+#    #+#              #
-#    Updated: 2019/11/19 19:25:34 by jormond-         ###   ########.fr        #
+#    Updated: 2019/11/21 14:18:55 by jormond-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ LIB = libft/libft.a
 # FLAGS = -Wall -Wextra -Werror
 
 ASMFILES = main.c arg_reader.c s_compiler.c fill_magic_header.c tools.c \
-			take_tokens.c
+			take_tokens.c get_next_line.c
 
 ASMSRC = $(addprefix asmsrc/,$(ASMFILES))
 

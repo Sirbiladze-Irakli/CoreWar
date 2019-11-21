@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/17 15:55:48 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/21 18:47:04 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,21 @@ char        	*ft_itoa_base(int value, int base)
 	if (neg)
 		nbr[0] = '-';
 	return (nbr);
+}
+
+void			name_and_comment_reader(t_cw *corewar, int var)
+{
+	char	*tmp;
+
+	if (var == 1)
+	{
+		
+	}
+	while (corewar->line[corewar->esym])
+	{
+		if (corewar->line[corewar->esym] == '"')
+		{
+			return ;
+		}
+	}
 }

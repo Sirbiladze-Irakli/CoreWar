@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/19 19:31:17 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/21 20:07:53 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,20 @@
 
 typedef struct	s_cw
 {
+	char		*file;
 	char		*line;
 	void		*hex;
 	char		*output_file;
+	char		*inname;
+	char		*incomment;
+	char		*incommands;
 	int			ret;
 	int			in;
-	int			error_line;
-	int			error_sym;
+	int			eline;
+	int			esym;
+	int			pos;
+	int			name;
+	int			comment;
 }				t_cw;
 
 /*
@@ -59,6 +66,7 @@ typedef struct	s_cw
 
 void			init_struct(t_cw *corewar);
 void			output(char *str);
+void			error_out(t_cw *corewar, int var, char *str);
 
 /*
 ** get_next_line.c
@@ -91,5 +99,13 @@ void            s_compiler(t_cw *corewar, char *av);
 */
 
 void			fill_magic_header(t_cw *corewar, int out);
+
+/*
+** take_tokens.c
+*/
+
+void			take_tokens(t_cw *corewar);
+void			parse_tokens(t_cw *corewar);
+void            name_and_comment(t_cw *corewar);
 
 #endif

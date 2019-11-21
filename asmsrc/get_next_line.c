@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 11:31:28 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/18 17:35:31 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/21 19:47:49 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static t_list	*ft_search_node(t_list **list, int fd)
 static char		*ft_cut_line(char **s)
 {
 	char	*str;
-	char	*tmp;
 	int		i;
+	char	*tmp;
 
 	tmp = *s;
 	i = 0;
@@ -62,9 +62,9 @@ static char		*ft_cut_line(char **s)
 int				get_next_line(const int fd, char **line)
 {
 	static t_list	*list;
-	t_list			*tmp;
 	char			buf[BUFF_SIZE + 1];
 	int				ret;
+	t_list			*tmp;
 
 	if (fd < 0 || line == NULL || BUFF_SIZE <= 0 ||
 			(tmp = ft_search_node(&list, fd)) == NULL)
@@ -75,7 +75,7 @@ int				get_next_line(const int fd, char **line)
 			return (-1);
 		buf[ret] = '\0';
 		(!(tmp->content)) ? tmp->content = ft_strdup(buf) :
-			ft_first_free_join((char **)&(tmp->content), buf);
+			ft_join_free((char **)&(tmp->content), buf);
 		if (ft_strchr(buf, '\n'))
 			break ;
 	}
