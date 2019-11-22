@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   asm.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/21 18:42:11 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/22 14:44:42 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			error_out(t_cw *corewar, int var, char *str)
+void			errors(t_cw *corewar, int var)
+{
+	if (corewar->name > 1 && ft_strstr(corewar->line, ".name"))
+	{
+		error_out(corewar, 1);
+		write(1, " COMMAND_NAME \".name\"\n", 23);
+	}
+	else if (corewar->comment > 1 && ft_strstr(corewar->line, ".comment"))
+	{
+		error_out(corewar, 1);
+		write(1, " COMMAND_COMMENT \".comment\"\n", 28);
+	}
+	else if (var == 2)
+		error_out(corewar, 2);
+	exit(0);
+}
+
+void			error_out(t_cw *corewar, int var)
 {
 	if (var == 1)
 	{
@@ -30,7 +47,6 @@ void			error_out(t_cw *corewar, int var, char *str)
 		ft_putnbr(corewar->esym);
 		write(1, "]", 1);
 	}
-	
 }
 
 void			output(char *str)
@@ -48,7 +64,7 @@ void			init_struct(t_cw *corewar)
 		output("Can't allocate a memory");
 	if (!(corewar->incomment = (char *)malloc(sizeof(char) * COMMENT_LENGTH)))
 		output("Can't allocate a memory");
-	corewar->output_file = NULL;
+	corewar->line = ft_strnew(1);
 	corewar->ret = 0;
 	corewar->in = 0;
 	corewar->eline = 0;

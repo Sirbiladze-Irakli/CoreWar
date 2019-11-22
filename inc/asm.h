@@ -6,12 +6,13 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/21 20:07:53 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/22 18:24:54 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef	OP_H
 # define OP_H
+# define TOKEN corewar->tokens
 # define LIVE 0x01
 # define LD 0x02
 # define ST 0x03
@@ -40,14 +41,24 @@
 # include <stdio.h>
 # include <fcntl.h>
 # include "op.h"
-# include "../libft/includes/libft.h"
+# include "cmd_op.h"
+// # include "../libft/includes/libft.h"
+
+typedef struct	s_ls
+{
+	char		*token;
+	int			label;
+	struct s_ls	*next;
+}				t_ls;
+
 
 typedef struct	s_cw
 {
+	t_ls		*tokens;
+	char		*bytecode;
 	char		*file;
 	char		*line;
 	void		*hex;
-	char		*output_file;
 	char		*inname;
 	char		*incomment;
 	char		*incommands;
@@ -66,7 +77,8 @@ typedef struct	s_cw
 
 void			init_struct(t_cw *corewar);
 void			output(char *str);
-void			error_out(t_cw *corewar, int var, char *str);
+void			error_out(t_cw *corewar, int var);
+void			errors(t_cw *corewar, int var);
 
 /*
 ** get_next_line.c
@@ -81,6 +93,7 @@ int				get_next_line(const int fd, char **line);
 void			s_reader(t_cw *corewar, char *av);
 void			valid_arg(t_cw *corewar, char *av);
 void			cor_reader(t_cw *corewar, char *av);
+void			read_line(int fd, char **line);
 
 /*
 ** tools.c
@@ -92,7 +105,7 @@ char			*ft_itoa_base(int value, int base);
 ** s_compiler.c
 */
 
-void            s_compiler(t_cw *corewar, char *av);
+void			s_compiler(t_cw *corewar, char *av);
 
 /*
 ** fill_magic_header.c
@@ -107,5 +120,28 @@ void			fill_magic_header(t_cw *corewar, int out);
 void			take_tokens(t_cw *corewar);
 void			parse_tokens(t_cw *corewar);
 void            name_and_comment(t_cw *corewar);
+
+/*
+** read_and_write.c
+*/
+
+void			read_name(t_cw *corewar);
+
+/*
+** parse.c
+*/
+
+void			parse(t_cw *corewar);
+void			add_token(t_cw *corewar, int *i);
+
+/*
+** add_node.c
+*/
+
+void			add_node(t_cw *corewar);
+void			init_list(t_cw *corewar);
+void			add_new_node(t_cw *corewar, t_ls *list);
+t_ls			*last_node(t_cw *corewar);
+void			prepare_node(t_cw *corewar, t_ls **tmp);
 
 #endif
