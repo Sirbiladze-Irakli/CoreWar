@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:21:26 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/22 18:25:06 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/25 19:08:46 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,35 +17,36 @@ void			add_node(t_cw *corewar)
 	t_ls		*tmp;
 
 	tmp = TOKEN;
-	if (!(TOKEN))
-		init_list(corewar);
+	if (!(tmp))
+		init_list(corewar ,tmp);
 	else
 	{
-		while (TOKEN)
-			TOKEN = TOKEN->next;
-		add_new_node(corewar, TOKEN);
+		while (tmp)
+			tmp = tmp->next;
+		add_new_node(corewar, tmp);
 	}
-	TOKEN = tmp;
-	
 }
 
-void			init_list(t_cw *corewar)
+void			init_list(t_cw *corewar, t_ls *list)
 {
-	if (!(TOKEN = (t_ls *)malloc(sizeof(t_ls))))
+	if (!(list = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	TOKEN->next = NULL;
-	if (!(TOKEN->token = (char *)malloc(sizeof(char) * 256)))
+	printf("%p\n", list);
+	if (!(list->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
-	TOKEN->label = 0;
+	list->next = NULL;
+	list->label = 0;
+	TOKEN = list;
 }
 
 void			add_new_node(t_cw *corewar, t_ls *list)
 {
 	if(!(list = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	list->next = NULL;
+	printf("%p\n", list);
 	if (!(list->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
+	list->next = NULL;
 	list->label = 0;
 }
 
@@ -59,8 +60,7 @@ t_ls			*last_node(t_cw *corewar)
 	return (tmp);
 }
 
-void			prepare_node(t_cw *corewar, t_ls **tmp)
-{
-	add_node(corewar);
-	(*tmp) = last_node(corewar);
-}
+// void			prepare_node(t_cw *corewar)
+// {
+// 	add_node(corewar);
+// }

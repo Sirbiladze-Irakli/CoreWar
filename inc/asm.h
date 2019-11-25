@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/22 18:24:54 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/25 17:31:02 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,9 +139,9 @@ void			add_token(t_cw *corewar, int *i);
 */
 
 void			add_node(t_cw *corewar);
-void			init_list(t_cw *corewar);
+void			init_list(t_cw *corewar, t_ls *list);
 void			add_new_node(t_cw *corewar, t_ls *list);
 t_ls			*last_node(t_cw *corewar);
-void			prepare_node(t_cw *corewar, t_ls **tmp);
+void			prepare_node(t_cw *corewar);
 
 #endif
