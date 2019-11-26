@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/25 11:36:47 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:13:00 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@ void			errors(t_cw *corewar, int var)
 {
 	if (corewar->name > 1 && ft_strstr(corewar->line, ".name"))
 	{
+		corewar->esym -= 5;
 		error_out(corewar, 1);
 		write(1, " COMMAND_NAME \".name\"\n", 23);
 	}
 	else if (corewar->comment > 1 && ft_strstr(corewar->line, ".comment"))
 	{
+		corewar->esym -= 8;
 		error_out(corewar, 1);
 		write(1, " COMMAND_COMMENT \".comment\"\n", 28);
 	}
@@ -68,11 +70,11 @@ void			init_struct(t_cw *corewar)
 	corewar->line = ft_strnew(1);
 	corewar->ret = 0;
 	corewar->in = 0;
-	corewar->eline = 0;
+	corewar->eline = 1;
 	corewar->pos = 4;
 	corewar->name = 0;
 	corewar->comment = 0;
-	corewar->esym = 0;
+	corewar->esym = 1;
 }
 
 int				main(int ac, char **av)

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:21:26 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/25 19:08:46 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/26 15:18:23 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void			init_list(t_cw *corewar, t_ls *list)
 {
 	if (!(list = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	printf("%p\n", list);
 	if (!(list->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
 	list->next = NULL;
@@ -43,7 +42,6 @@ void			add_new_node(t_cw *corewar, t_ls *list)
 {
 	if(!(list = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	printf("%p\n", list);
 	if (!(list->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
 	list->next = NULL;

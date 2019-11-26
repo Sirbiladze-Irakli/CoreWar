@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/25 17:31:02 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/26 16:01:18 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void			fill_magic_header(t_cw *corewar, int out);
 void			take_tokens(t_cw *corewar);
 void			parse_tokens(t_cw *corewar);
 void            name_and_comment(t_cw *corewar);
+void			fill_name_and_comment(t_cw *corewar, int *i);
+void			token_in_quotes(t_cw *corewar, int *i);
 
 /*
 ** read_and_write.c
