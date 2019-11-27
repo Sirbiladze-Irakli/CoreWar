@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/26 16:01:18 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/27 15:58:07 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,8 @@ void			read_line(int fd, char **line);
 */
 
 char			*ft_itoa_base(int value, int base);
+void			skip_spaces(t_cw *corewar, int *i);
+int				separators(char c);
 
 /*
 ** s_compiler.c
@@ -122,6 +124,7 @@ void			parse_tokens(t_cw *corewar);
 void            name_and_comment(t_cw *corewar);
 void			fill_name_and_comment(t_cw *corewar, int *i);
 void			token_in_quotes(t_cw *corewar, int *i);
+void			dot_label(t_cw *corewar, int *i);
 
 /*
 ** read_and_write.c
@@ -140,9 +143,9 @@ void			add_token(t_cw *corewar, int *i);
 ** add_node.c
 */
 
-void			add_node(t_cw *corewar);
-void			init_list(t_cw *corewar, t_ls *list);
-void			add_new_node(t_cw *corewar, t_ls *list);
+t_ls			*add_node(t_cw *corewar);
+t_ls			*init_list(t_cw *corewar);
+t_ls			*add_new_node(t_cw *corewar);
 t_ls			*last_node(t_cw *corewar);
 void			prepare_node(t_cw *corewar);
 
