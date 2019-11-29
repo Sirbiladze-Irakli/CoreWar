@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/27 13:42:11 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:16:14 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ void			skip_spaces(t_cw *corewar, int *i)
 
 int				separators(char c)
 {
-	return ((c == '"' && c == ',' && c == ';' && c == '#'));
+	return ((c == '"' || c == ',' || c == ';' || c == '#'));
 }

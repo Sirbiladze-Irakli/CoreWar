@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:21:26 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/27 15:58:24 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:46:04 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_ls			*add_node(t_cw *corewar)
 			tmp = tmp->next;
 		tmp = add_new_node(corewar);
 	}
-	printf("%p\n\n", TOKEN);
 	return (tmp);
 }
 
@@ -40,7 +39,6 @@ t_ls			*init_list(t_cw *corewar)
 	list->next = NULL;
 	list->label = 0;
 	TOKEN = list;
-	printf("%p\n\n", list);
 	return (list);
 }
 

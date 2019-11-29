@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/27 15:58:07 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 16:36:09 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct	s_cw
 void			init_struct(t_cw *corewar);
 void			output(char *str);
 void			error_out(t_cw *corewar, int var);
-void			errors(t_cw *corewar, int var);
+void			errors(t_cw *corewar, int var, int shift);
 
 /*
 ** get_next_line.c

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:57:36 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/22 14:30:33 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 16:38:05 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void            read_name(t_cw *corewar)
 	}
 	printf("%s name\n", corewar->inname);
 	if (quotes != 2)
-		errors(corewar, 2);
+		errors(corewar, 2, 0);
 	if (corewar->line[++corewar->esym] != '\0')
-		errors(corewar, 2);
+		errors(corewar, 2, 0);
 }

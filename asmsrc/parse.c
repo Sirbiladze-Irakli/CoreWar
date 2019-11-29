@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/27 16:05:05 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:47:05 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void			parse(t_cw *corewar)
 			token_in_quotes(corewar, &i);
 		// else
 		// 	add_token(corewar, &i);
+		printf("%p\n", TOKEN);
+	}
+	printf("===================\n\n");
+	while (TOKEN)
+	{
+		printf("%p\n", TOKEN);
+		printf("%s\n", TOKEN->token);
+		TOKEN = TOKEN->next;
 	}
 }
 

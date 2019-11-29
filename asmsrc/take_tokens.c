@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:25:36 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/27 16:07:01 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 17:49:54 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,14 @@ void            take_tokens(t_cw *corewar)
 {
 	read_line(corewar->in, &corewar->line);
 	parse(corewar);
-	printf("%s\n", corewar->line);
 	return ;
 }
 
 void            parse_tokens(t_cw *corewar)
 {
 	corewar->eline++;
-
-	printf("%s\n", corewar->line);
 	name_and_comment(corewar);
-	errors(corewar, 0);
+	errors(corewar, 0, 0);
 }
 
 void            name_and_comment(t_cw *corewar)
@@ -46,7 +43,7 @@ void            name_and_comment(t_cw *corewar)
 void			fill_name_and_comment(t_cw *corewar, int *i)
 {
 	if (corewar->line[(*i)] != '"')
-		errors(corewar, 2);
+		errors(corewar, 2, 0);
 }
 
 void			token_in_quotes(t_cw *corewar, int *i)
@@ -72,7 +69,11 @@ void			token_in_quotes(t_cw *corewar, int *i)
 	// 	errors()
 }
 
-void				dot_label(t_cw *corewar, int *i)
+/*
+** The function under this line don't allocate memory for new list. Fix it!
+*/
+
+void				dot_label(t_cw *corewar, int *i) 
 {
 	t_ls		*tmp;
 	int			j;
@@ -84,12 +85,13 @@ void				dot_label(t_cw *corewar, int *i)
 		tmp->token[++j] = corewar->line[(*i)++];
 		corewar->esym++;
 	}
+	// printf("%s\n", TOKEN->token);
 	if (!(ft_strcmp(tmp->token, ".name")))
 		corewar->name++;
 	if (!(ft_strcmp(tmp->token, ".comment")))
 		corewar->comment++;
 	if (corewar->name > 1 || corewar->comment > 1)
-		errors(corewar, 1);
-	if (corewar->name == 0 && corewar->comment == 0)
-		errors(corewar, 1);
+		errors(corewar, 1, corewar->esym);
+	if (corewar->name != 1 && corewar->comment != 1)
+		errors(corewar, 1, corewar->esym);
 }

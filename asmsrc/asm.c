@@ -6,23 +6,26 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/27 16:06:58 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/11/29 16:35:47 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			errors(t_cw *corewar, int var)
+void			errors(t_cw *corewar, int var, int shift)
 {
-	if (corewar->name > 1 && ft_strstr(corewar->line, ".name"))
+	printf("%d name\n", corewar->name);
+	if ((corewar->name > 1 || corewar->name == 0)
+	&& ft_strcmp(corewar->line, ".name"))
 	{
-		corewar->esym -= 5;
+		corewar->esym -= shift;
 		error_out(corewar, 1);
 		write(1, " COMMAND_NAME \".name\"\n", 23);
 	}
-	else if (corewar->comment > 1 && ft_strstr(corewar->line, ".comment"))
+	else if ((corewar->comment > 1 || corewar->comment == 0)
+	&& ft_strcmp(corewar->line, ".comment"))
 	{
-		corewar->esym -= 8;
+		corewar->esym -= shift;
 		error_out(corewar, 1);
 		write(1, " COMMAND_COMMENT \".comment\"\n", 28);
 	}
