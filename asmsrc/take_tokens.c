@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:25:36 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/29 17:49:54 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/12/11 19:33:20 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,10 @@ void			token_in_quotes(t_cw *corewar, int *i)
 	j = -1;
 	ssym = corewar->esym;
 	sline = corewar->eline;
+	printf("!\n");
 	while (corewar->line[++(*i)] && corewar->line[(*i)] != '"')
 	{
+		printf("!\n");
 		TOKEN->token[++j] = corewar->line[(*i)];
 		corewar->esym++;
 		if (corewar->line[(*i)] == '\n')
@@ -85,6 +87,7 @@ void				dot_label(t_cw *corewar, int *i)
 		tmp->token[++j] = corewar->line[(*i)++];
 		corewar->esym++;
 	}
+	printf("%d = i\n", (*i));
 	// printf("%s\n", TOKEN->token);
 	if (!(ft_strcmp(tmp->token, ".name")))
 		corewar->name++;
