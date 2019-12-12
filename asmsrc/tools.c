@@ -81,5 +81,5 @@ void			skip_spaces(t_cw *corewar, int *i)
 
 int				separators(char c)
 {
-	return ((c == '"' || c == ',' || c == ';' || c == '#'));
+	return ((c == '"' || c == ',' || c == ';' || c == '#' || c == ':'));
 }

@@ -51,15 +51,15 @@ void			token_in_quotes(t_cw *corewar, int *i)
 	int		j;
 	int		ssym;
 	int		sline;
+	t_ls    *tmp;
 
 	j = -1;
 	ssym = corewar->esym;
 	sline = corewar->eline;
-	printf("!\n");
+	tmp = add_node(corewar);
 	while (corewar->line[++(*i)] && corewar->line[(*i)] != '"')
 	{
-		printf("!\n");
-		TOKEN->token[++j] = corewar->line[(*i)];
+		tmp->token[++j] = corewar->line[(*i)];
 		corewar->esym++;
 		if (corewar->line[(*i)] == '\n')
 		{
@@ -67,6 +67,8 @@ void			token_in_quotes(t_cw *corewar, int *i)
 			corewar->eline++;
 		}
 	}
+    (*i)++;
+	tmp->label = NAME;
 	// if (!(ft_strchr(TOKEN->token, '\n')))
 	// 	errors()
 }
@@ -82,12 +84,12 @@ void				dot_label(t_cw *corewar, int *i)
 
 	j = -1;
 	tmp = add_node(corewar);
-	while(!(separators(corewar->line[(*i)])) && !(ft_isspace(corewar->line[(*i)])))
+	while (!(separators(corewar->line[(*i)])) && !(ft_isspace(corewar->line[(*i)])))
 	{
 		tmp->token[++j] = corewar->line[(*i)++];
 		corewar->esym++;
 	}
-	printf("%d = i\n", (*i));
+	tmp->label = DOTNAME;
 	// printf("%s\n", TOKEN->token);
 	if (!(ft_strcmp(tmp->token, ".name")))
 		corewar->name++;

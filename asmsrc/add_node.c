@@ -17,18 +17,14 @@ t_ls			*add_node(t_cw *corewar)
 	t_ls		*tmp;
 
 	tmp = TOKEN;
-	printf("\n!!!\n");
 	if (!(tmp))
-	{
 		tmp = init_list(corewar);
-		printf("!\n");
-	}
 	else
 	{
-		while (tmp)
+		while (tmp->next)
 			tmp = tmp->next;
-		tmp = add_new_node(corewar);
-		printf("!\n");
+		add_new_node(corewar, &(tmp->next));
+        return (tmp->next);
 	}
 	return (tmp);
 }
@@ -47,17 +43,14 @@ t_ls			*init_list(t_cw *corewar)
 	return (list);
 }
 
-t_ls			*add_new_node(t_cw *corewar)
+void			*add_new_node(t_cw *corewar, t_ls **tmp)
 {
-	t_ls	*list;
-	
-	if(!(list = (t_ls *)malloc(sizeof(t_ls))))
+	if(!((*tmp) = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	if (!(list->token = (char *)malloc(sizeof(char) * 256)))
+	if (!((*tmp)->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
-	list->next = NULL;
-	list->label = 0;
-	return (list);
+	(*tmp)->next = NULL;
+	(*tmp)->label = 0;
 }
 
 t_ls			*last_node(t_cw *corewar)

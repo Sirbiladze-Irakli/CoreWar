@@ -35,6 +35,8 @@
 # define SEPARATOR 4
 # define DIRECT 5
 # define DIRECT_LABEL 6
+# define NAME 8
+# define DOTNAME 9
 # define BUFF_SIZE 7
 # include <unistd.h>
 # include <stdlib.h>
@@ -121,7 +123,7 @@ void			fill_magic_header(t_cw *corewar, int out);
 
 void			take_tokens(t_cw *corewar);
 void			parse_tokens(t_cw *corewar);
-void            name_and_comment(t_cw *corewar);
+void                    name_and_comment(t_cw *corewar);
 void			fill_name_and_comment(t_cw *corewar, int *i);
 void			token_in_quotes(t_cw *corewar, int *i);
 void			dot_label(t_cw *corewar, int *i);
@@ -145,7 +147,7 @@ void			add_token(t_cw *corewar, int *i);
 
 t_ls			*add_node(t_cw *corewar);
 t_ls			*init_list(t_cw *corewar);
-t_ls			*add_new_node(t_cw *corewar);
+void			*add_new_node(t_cw *corewar, t_ls **tmp);
 t_ls			*last_node(t_cw *corewar);
 void			prepare_node(t_cw *corewar);
 

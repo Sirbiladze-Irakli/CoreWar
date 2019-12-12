@@ -19,18 +19,15 @@ void			parse(t_cw *corewar)
 	i = 0;
 	while (corewar->line[i])
 	{
-		// printf("\n|%c|\n", corewar->line[i]);
 		if (ft_isspace(corewar->line[i]))
 			skip_spaces(corewar, &i);
 		else if (corewar->line[i] == '.')
 			dot_label(corewar, &i);
 		else if (corewar->line[i] == '"')
 			token_in_quotes(corewar, &i);
-		// else
-		// 	add_token(corewar, &i);
-		printf("%p!\n", TOKEN);
+		 else
+		 	add_token(corewar, &i);
 	}
-	printf("\n===================\n\n");
 	while (TOKEN)
 	{
 		printf("%p\n", TOKEN);
