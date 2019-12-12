@@ -43,7 +43,7 @@ t_ls			*init_list(t_cw *corewar)
 	return (list);
 }
 
-void			*add_new_node(t_cw *corewar, t_ls **tmp)
+void			add_new_node(t_cw *corewar, t_ls **tmp)
 {
 	if(!((*tmp) = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");

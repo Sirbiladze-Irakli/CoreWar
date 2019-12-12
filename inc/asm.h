@@ -29,14 +29,17 @@
 # define LLDI 0x0e
 # define LFORK 0x0f
 # define AFF 0x10
-# define LABEL 1
-# define INSTRUCTION 2
-# define REGISTER 3
-# define SEPARATOR 4
-# define DIRECT 5
-# define DIRECT_LABEL 6
-# define NAME 8
-# define DOTNAME 9
+# define LABEL 21
+# define INSTRUCTION 22
+# define ARG1 111
+# define ARG2 222
+# define ARG3 333
+# define REGISTER 23
+# define SEPARATOR 24
+# define DIRECT 25
+# define DIRECT_LABEL 26
+# define NAME 28
+# define DOTNAME 29
 # define BUFF_SIZE 7
 # include <unistd.h>
 # include <stdlib.h>
@@ -123,7 +126,7 @@ void			fill_magic_header(t_cw *corewar, int out);
 
 void			take_tokens(t_cw *corewar);
 void			parse_tokens(t_cw *corewar);
-void                    name_and_comment(t_cw *corewar);
+void            name_and_comment(t_cw *corewar);
 void			fill_name_and_comment(t_cw *corewar, int *i);
 void			token_in_quotes(t_cw *corewar, int *i);
 void			dot_label(t_cw *corewar, int *i);
@@ -147,8 +150,18 @@ void			add_token(t_cw *corewar, int *i);
 
 t_ls			*add_node(t_cw *corewar);
 t_ls			*init_list(t_cw *corewar);
-void			*add_new_node(t_cw *corewar, t_ls **tmp);
+void			add_new_node(t_cw *corewar, t_ls **tmp);
 t_ls			*last_node(t_cw *corewar);
 void			prepare_node(t_cw *corewar);
+
+/*
+ * add_token.c
+ */
+
+void            add_token(t_cw *corewar, int *i);
+void            define_labels(t_cw *corewar);
+void            fill_label(int *counter, t_ls *tmp);
+void            fill_label2(int *counter, t_ls *tmp);
+int             how_many_args(t_ls *tmp);
 
 #endif

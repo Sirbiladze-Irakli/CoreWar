@@ -25,9 +25,10 @@ void			parse(t_cw *corewar)
 			dot_label(corewar, &i);
 		else if (corewar->line[i] == '"')
 			token_in_quotes(corewar, &i);
-		 else
-		 	add_token(corewar, &i);
+		else
+			add_token(corewar, &i);
 	}
+	define_labels(corewar);
 	while (TOKEN)
 	{
 		printf("%p\n", TOKEN);
