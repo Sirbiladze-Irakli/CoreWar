@@ -71,13 +71,15 @@ void			init_struct(t_cw *corewar)
 		output("Can't allocate a memory");
 	TOKEN = NULL;
 	corewar->line = ft_strnew(1);
-	corewar->ret = 0;
+	corewar->res = 0;
+	corewar->dir = 0;
 	corewar->in = 0;
 	corewar->eline = 1;
 	corewar->pos = 4;
 	corewar->name = 0;
 	corewar->comment = 0;
 	corewar->esym = 1;
+	COUNTER = 0;
 }
 
 int				main(int ac, char **av)

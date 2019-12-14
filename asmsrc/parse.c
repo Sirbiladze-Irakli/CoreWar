@@ -25,16 +25,20 @@ void			parse(t_cw *corewar)
 			dot_label(corewar, &i);
 		else if (corewar->line[i] == '"')
 			token_in_quotes(corewar, &i);
+		else if (corewar->line[i] == ';' || corewar->line[i] == '#')
+			while (corewar->line[i] && corewar->line[i] != '\n')
+				i++;
 		else
 			add_token(corewar, &i);
 	}
 	define_labels(corewar);
-	while (TOKEN)
-	{
-		printf("%p\n", TOKEN);
-		printf("%s\n", TOKEN->token);
-		TOKEN = TOKEN->next;
-	}
+//	while (TOKEN)
+//	{
+//		printf("%p\n", TOKEN);
+//		printf("%s\n", TOKEN->token);
+//		printf("%d\n\n", TOKEN->label);
+//		TOKEN = TOKEN->next;
+//	}
 }
 
 // void			add_token(t_cw *corewar, int *i)

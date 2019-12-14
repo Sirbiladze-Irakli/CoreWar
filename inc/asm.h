@@ -31,15 +31,9 @@
 # define AFF 0x10
 # define LABEL 21
 # define INSTRUCTION 22
-# define ARG1 111
-# define ARG2 222
-# define ARG3 333
-# define REGISTER 23
-# define SEPARATOR 24
-# define DIRECT 25
-# define DIRECT_LABEL 26
 # define NAME 28
 # define DOTNAME 29
+# define COUNTER corewar->counter
 # define BUFF_SIZE 7
 # include <unistd.h>
 # include <stdlib.h>
@@ -67,8 +61,10 @@ typedef struct	s_cw
 	char		*inname;
 	char		*incomment;
 	char		*incommands;
-	int			ret;
+	int			res;
+	int         dir;
 	int			in;
+	int         counter;
 	int			eline;
 	int			esym;
 	int			pos;
@@ -104,7 +100,8 @@ void			read_line(int fd, char **line);
 ** tools.c
 */
 
-char			*ft_itoa_base(int value, int base);
+int             dir_size(t_ls *tmp);
+void            evaluate_instruction(t_cw *corewar, char *token);
 void			skip_spaces(t_cw *corewar, int *i);
 int				separators(char c);
 
@@ -119,6 +116,9 @@ void			s_compiler(t_cw *corewar, char *av);
 */
 
 void			fill_magic_header(t_cw *corewar, int out);
+void            fill_name(t_cw *corewar, int out);
+void            fill_null(int out);
+void            champ_size(t_cw *corewar, int out);
 
 /*
 ** take_tokens.c
@@ -142,7 +142,7 @@ void			read_name(t_cw *corewar);
 */
 
 void			parse(t_cw *corewar);
-void			add_token(t_cw *corewar, int *i);
+//void			add_token(t_cw *corewar, int *i);
 
 /*
 ** add_node.c
@@ -160,8 +160,8 @@ void			prepare_node(t_cw *corewar);
 
 void            add_token(t_cw *corewar, int *i);
 void            define_labels(t_cw *corewar);
-void            fill_label(int *counter, t_ls *tmp);
-void            fill_label2(int *counter, t_ls *tmp);
-int             how_many_args(t_ls *tmp);
+void            fill_label(t_cw *corewar, t_ls *tmp);
+void            fill_label2(t_cw *corewar, t_ls *tmp);
+void            how_many_args(t_cw *corewar, t_ls *tmp);
 
 #endif

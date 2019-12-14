@@ -29,20 +29,24 @@ void            add_token(t_cw *corewar, int *i)
 
 void            define_labels(t_cw *corewar)
 {
-	int         counter;
 	t_ls        *tmp;
 
 	tmp = TOKEN;
-	counter = 0;
 	while (tmp)
 	{
-		if (tmp->label == 0)
-			fill_label(&counter, tmp);
+		if (COUNTER != 0)
+		{
+			evaluate_instruction(corewar, tmp->token);
+			tmp->label = INSTRUCTION;
+			COUNTER--;
+		}
+		else if (tmp->label == 0 && COUNTER == 0)
+			fill_label(corewar, tmp);
 		tmp = tmp->next;
 	}
 }
 
-void            fill_label(int *counter, t_ls *tmp)
+void            fill_label(t_cw *corewar, t_ls *tmp)
 {
 	if (tmp->token[ft_strlen(tmp->token) - 1] == ':')
 		tmp->label = LABEL;
@@ -60,21 +64,14 @@ void            fill_label(int *counter, t_ls *tmp)
 		tmp->label = AND;
 	else if (!(ft_strcmp(tmp->token, "or")))
 		tmp->label = OR;
-	else if (!(ft_strcmp(tmp->token, "xor")))
-		tmp->label = XOR;
-	else if (!(ft_strcmp(tmp->token, "zjmp")))
-		tmp->label = ZJMP;
-	else if (!(ft_strcmp(tmp->token, "ldi")))
-		tmp->label = LDI;
-	else if (!(ft_strcmp(tmp->token, "sti")))
-		tmp->label = STI;
 	else
-		fill_label2(counter, tmp);
-	printf("%s\n", tmp->token);
-	printf("%d\n", tmp->label);
+		fill_label2(corewar, tmp);
+	how_many_args(corewar, tmp);
+	corewar->dir = dir_size(tmp);
+	corewar->res++;
 }
 
-void            fill_label2(int *counter, t_ls *tmp)
+void            fill_label2(t_cw *corewar, t_ls *tmp)
 {
 	if (!(ft_strcmp(tmp->token, "fork")))
 		tmp->label = FORK;
@@ -86,18 +83,26 @@ void            fill_label2(int *counter, t_ls *tmp)
 		tmp->label = LFORK;
 	else if (!(ft_strcmp(tmp->token, "aff")))
 		tmp->label = AFF;
-	(*counter) = how_many_args(tmp);
+	else if (!(ft_strcmp(tmp->token, "ldi")))
+		tmp->label = LDI;
+	else if (!(ft_strcmp(tmp->token, "sti")))
+		tmp->label = STI;
+	else if (!(ft_strcmp(tmp->token, "xor")))
+		tmp->label = XOR;
+	else if (!(ft_strcmp(tmp->token, "zjmp")))
+		tmp->label = ZJMP;
 }
 
-int             how_many_args(t_ls *tmp)
+void            how_many_args(t_cw *corewar, t_ls *tmp)
 {
 	if (tmp->label == LIVE || tmp->label == ZJMP || tmp->label == FORK
 	|| tmp->label == LFORK || tmp->label == AFF)
-		return (1);
+		COUNTER = 1;
 	else if (tmp->label == LD || tmp->label == ST || tmp->label == LLD)
-		return (2);
+		COUNTER = 2;
 	else if (tmp->label == ADD || tmp->label == SUB || tmp->label == AND
 	|| tmp->label == OR || tmp->label == XOR || tmp->label == LDI ||
 	tmp->label == STI || tmp->label == LLDI)
-		return (3);
+		COUNTER = 3;
+
 }

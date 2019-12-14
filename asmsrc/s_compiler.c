@@ -21,7 +21,9 @@ void			s_compiler(t_cw *corewar, char *av)
 		output("Can't open file\n");
 	if (!(out = open(corewar->bytecode, O_CREAT | O_RDWR, 0644)))
 		output("Can't create file\n");
-	// while (get_next_line(corewar->in, &corewar->line))
 	take_tokens(corewar);
 	fill_magic_header(corewar, out);
+	fill_name(corewar, out);
+	fill_null(out);
+	champ_size(corewar, out);
 }

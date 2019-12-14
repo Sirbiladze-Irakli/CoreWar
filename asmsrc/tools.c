@@ -20,49 +20,30 @@ static int		ft_pow(int nb, int pow)
 		return (nb * ft_pow(nb, pow - 1));
 }
 
-char        	*ft_itoa_base(int value, int base)
+void            evaluate_instruction(t_cw *corewar, char *token)
 {
-	int		i;
-	char	*nbr;
-	int		neg;
-
-	i = 1;
-	neg = 0;
-	if (value < 0)
+	if (ft_strchr(token, '%'))
 	{
-		if (base == 10)
-			neg = 1;
-		value *= -1;
+		corewar->res += corewar->dir;
+		return ;
 	}
-	while (ft_pow(base, i) - 1 < value)
-		i++;
-	nbr = (char*)malloc(sizeof(nbr) * i);
-	nbr[i + neg] = '\0';
-	while (i-- > 0)
+	else if (ft_strchr(token, 'r'))
 	{
-		nbr[i + neg] = (value % base) + (value % base > 9 ? 'A' - 10 : '0');
-		value = value / base;
+		corewar->res += 1;
+		return ;
 	}
-	if (neg)
-		nbr[0] = '-';
-	return (nbr);
+	else
+		corewar->res += 2;
 }
 
-void			name_and_comment_reader(t_cw *corewar, int var)
+int             dir_size(t_ls *tmp)
 {
-	char	*tmp;
-
-	if (var == 1)
-	{
-		
-	}
-	while (corewar->line[corewar->esym])
-	{
-		if (corewar->line[corewar->esym] == '"')
-		{
-			return ;
-		}
-	}
+	if (tmp->label == LIVE || tmp->label == LD || tmp->label == ST ||
+	tmp->label == ADD || tmp->label == SUB || tmp->label == AND || tmp->label
+	== OR || tmp->label == XOR || tmp->label == LLD || tmp->label == AFF)
+		return (4);
+	else
+		return (2);
 }
 
 void			skip_spaces(t_cw *corewar, int *i)
