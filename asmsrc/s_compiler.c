@@ -26,4 +26,7 @@ void			s_compiler(t_cw *corewar, char *av)
 	fill_name(corewar, out);
 	fill_null(out);
 	champ_size(corewar, out);
+	fill_comment(corewar, out);
+	fill_null(out);
+	fill_commands(corewar, out);
 }

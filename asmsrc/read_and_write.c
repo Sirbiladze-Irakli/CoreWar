@@ -33,9 +33,34 @@ void            read_name(t_cw *corewar)
 		}
 		corewar->inname[++i] = corewar->line[corewar->esym];
 	}
-	// printf("%s name\n", corewar->inname);
 	if (quotes != 2)
 		errors(corewar, 2, 0);
 	if (corewar->line[++corewar->esym] != '\0')
 		errors(corewar, 2, 0);
 }
+
+void            fill_commands(t_cw *corewar, int out)
+{
+	t_ls    *list;
+	char    c;
+
+	list = TOKEN;
+	while (list)
+	{
+		if (list->label > 0 && list->label < 17)
+		{
+			c = list->label;
+			write(out, &c, 1);
+		}
+		list = list->next;
+	}
+}
+
+//int             codetype(t_ls *tmp)
+//{
+//	if (tmp->label == 0x01 || tmp->label == 0x09 || tmp->label == 0x0c
+//	|| tmp->label == 0x0f)
+//		return(0);
+//	else
+//		return(1);
+//}

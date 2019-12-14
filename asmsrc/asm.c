@@ -75,6 +75,7 @@ void			init_struct(t_cw *corewar)
 	corewar->dir = 0;
 	corewar->in = 0;
 	corewar->eline = 1;
+	corewar->typecode = 0;
 	corewar->pos = 4;
 	corewar->name = 0;
 	corewar->comment = 0;

@@ -39,14 +39,17 @@ void            fill_name(t_cw *corewar, int out)
 	list = TOKEN;
 	while (list)
 	{
-		if (ft_strcmp(list->token, ".name"))
+		if (!(ft_strcmp(list->token, ".name")))
+		{
+			list = list->next;
 			break ;
+		}
 		list = list->next;
 	}
 	while (size < PROG_NAME_LENGTH)
 	{
 		if (size < ft_strlen(list->token))
-			tmp[size] = (uint8_t)((list->token[size]));
+			tmp[size] = list->token[size];
 		else
 			tmp[size] = '\0';
 		size++;
@@ -57,7 +60,7 @@ void            fill_name(t_cw *corewar, int out)
 void            fill_null(int out)
 {
 	unsigned char   tmp[4];
-	int             size;a
+	int             size;
 
 	size = 0;
 	while (size < 4)
@@ -69,10 +72,53 @@ void            champ_size(t_cw *corewar, int out)
 {
 	char            tmp[4];
 
-	corewar->res = 512;
 	tmp[3] = corewar->res & 255;
 	tmp[2] = (corewar->res & 65280) >> 8;
 	tmp[1] = (corewar->res & 16711680) >> 16;
 	tmp[0] = (corewar->res & 4278190080) >> 24;
 	write(out, tmp, 4);
 }
+
+void            fill_comment(t_cw *corewar, int out)
+{
+	t_ls            *list;
+	unsigned char   tmp[COMMENT_LENGTH];
+	int             size;
+
+	size = 0;
+	list = TOKEN;
+	while (list)
+	{
+		if (!(ft_strcmp(list->token, ".comment")))
+		{
+			list = list->next;
+			break ;
+		}
+		list = list->next;
+	}
+	while (size < COMMENT_LENGTH)
+	{
+		if (size < ft_strlen(list->token))
+			tmp[size] = list->token[size];
+		else
+			tmp[size] = '\0';
+		size++;
+	}
+	write(out, tmp, COMMENT_LENGTH);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

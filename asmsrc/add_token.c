@@ -36,6 +36,8 @@ void            define_labels(t_cw *corewar)
 	{
 		if (COUNTER != 0)
 		{
+//			if (corewar->typecode != 0)
+//				corewar->res += corewar->typecode--;
 			evaluate_instruction(corewar, tmp->token);
 			tmp->label = INSTRUCTION;
 			COUNTER--;
@@ -68,6 +70,7 @@ void            fill_label(t_cw *corewar, t_ls *tmp)
 		fill_label2(corewar, tmp);
 	how_many_args(corewar, tmp);
 	corewar->dir = dir_size(tmp);
+//	corewar->typecode = codetype(tmp);
 	corewar->res++;
 }
 

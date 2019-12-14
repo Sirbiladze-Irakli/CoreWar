@@ -55,19 +55,18 @@ typedef struct	s_cw
 {
 	t_ls		*tokens;
 	char		*bytecode;
-	char		*file;
 	char		*line;
-	void		*hex;
 	char		*inname;
-	char		*incomment;
-	char		*incommands;
+	char        *incommands;
+	char        *incomment;
 	int			res;
+	int         typecode;
 	int         dir;
 	int			in;
+	int         pos;
 	int         counter;
 	int			eline;
 	int			esym;
-	int			pos;
 	int			name;
 	int			comment;
 }				t_cw;
@@ -119,6 +118,7 @@ void			fill_magic_header(t_cw *corewar, int out);
 void            fill_name(t_cw *corewar, int out);
 void            fill_null(int out);
 void            champ_size(t_cw *corewar, int out);
+void            fill_comment(t_cw *corewar, int out);
 
 /*
 ** take_tokens.c
@@ -136,6 +136,8 @@ void			dot_label(t_cw *corewar, int *i);
 */
 
 void			read_name(t_cw *corewar);
+void            fill_commands(t_cw *corewar, int out);
+int             codetype(t_ls *tmp);
 
 /*
 ** parse.c
