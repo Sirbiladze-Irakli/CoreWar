@@ -14,8 +14,8 @@
 
 void			s_compiler(t_cw *corewar, char *av)
 {
-	unsigned char	*file;
-	int				out;
+	t_ls        *list;
+	int			out;
 
 	if (!(corewar->in = open(av, O_RDONLY)))
 		output("Can't open file\n");
@@ -28,5 +28,11 @@ void			s_compiler(t_cw *corewar, char *av)
 	champ_size(corewar, out);
 	fill_comment(corewar, out);
 	fill_null(out);
-	fill_commands(corewar, out);
+	list = TOKEN;
+	while (list)
+	{
+		if (list->label > 0 && list->label < 17)
+			champ_code(corewar, out, list);
+		list = list->next;
+	}
 }

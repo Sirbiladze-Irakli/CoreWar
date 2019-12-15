@@ -35,8 +35,6 @@ void			parse(t_cw *corewar)
 //	while (TOKEN)
 //	{
 //		printf("%p\n", TOKEN);
-//		printf("%s\n", TOKEN->token);
-//		printf("%d\n\n", TOKEN->label);
 //		TOKEN = TOKEN->next;
 //	}
 }

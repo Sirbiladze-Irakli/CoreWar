@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 15:02:18 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/17 16:42:08 by jormond-         ###   ########.fr       */
+/*   Updated: 2019/12/15 15:37:26 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,12 @@
 
 int         main(int ac, char **av)
 {
-    int     out;
-    int     i;
-    int     pos;
-    int     ret;
-    char    buf[1];
-    
-    ret = 0;
-    i = 0;
-    out = open(av[1], O_RDONLY);
-    while ((ret = read(out, buf, 1)) && i++ < 15)
-    {
-        printf("%c", buf[0]);
-    }
-    printf("\n");
+    int     res = 0;
+
+    res = res | 64;
+	printf("%i res\n", res);
+    res = res | 32;
+	printf("%i res\n", res);
+	res = res | 8;
+	printf("%i res\n", res);
 }

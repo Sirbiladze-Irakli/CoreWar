@@ -35,13 +35,13 @@
 # define DOTNAME 29
 # define COUNTER corewar->counter
 # define BUFF_SIZE 7
+# define ITER corewar->iter
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
 # include "op.h"
 # include "cmd_op.h"
-// # include "../libft/includes/libft.h"
 
 typedef struct	s_ls
 {
@@ -60,6 +60,7 @@ typedef struct	s_cw
 	char        *incommands;
 	char        *incomment;
 	int			res;
+	int         iter;
 	int         typecode;
 	int         dir;
 	int			in;
@@ -138,6 +139,7 @@ void			dot_label(t_cw *corewar, int *i);
 void			read_name(t_cw *corewar);
 void            fill_commands(t_cw *corewar, int out);
 int             codetype(t_ls *tmp);
+void            count_args(t_cw *corewar, t_ls *tmp);
 
 /*
 ** parse.c
@@ -157,13 +159,23 @@ t_ls			*last_node(t_cw *corewar);
 void			prepare_node(t_cw *corewar);
 
 /*
- * add_token.c
- */
+** add_token.c
+*/
 
 void            add_token(t_cw *corewar, int *i);
 void            define_labels(t_cw *corewar);
 void            fill_label(t_cw *corewar, t_ls *tmp);
 void            fill_label2(t_cw *corewar, t_ls *tmp);
 void            how_many_args(t_cw *corewar, t_ls *tmp);
+
+/*
+** champ_code.c
+*/
+
+void            champ_code(t_cw *corewar, int out, t_ls *list);
+void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type);
+void            reg_fill(t_cw *corewar, uint8_t *type);
+void            dir_fill(t_cw *corewar, uint8_t *type);
+void            ind_fill(t_cw *corewar, uint8_t *type);
 
 #endif

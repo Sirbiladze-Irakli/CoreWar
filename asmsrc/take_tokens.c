@@ -49,13 +49,9 @@ void			fill_name_and_comment(t_cw *corewar, int *i)
 void			token_in_quotes(t_cw *corewar, int *i)
 {
 	int		j;
-	int		ssym;
-	int		sline;
 	t_ls    *tmp;
 
 	j = -1;
-	ssym = corewar->esym;
-	sline = corewar->eline;
 	tmp = add_node(corewar);
 	while (corewar->line[++(*i)] && corewar->line[(*i)] != '"')
 	{
@@ -69,13 +65,8 @@ void			token_in_quotes(t_cw *corewar, int *i)
 	}
     (*i)++;
 	tmp->label = NAME;
-	// if (!(ft_strchr(TOKEN->token, '\n')))
-	// 	errors()
 }
 
-/*
-** The function under this line don't allocate memory for new list. Fix it!
-*/
 
 void				dot_label(t_cw *corewar, int *i) 
 {
@@ -90,10 +81,9 @@ void				dot_label(t_cw *corewar, int *i)
 		corewar->esym++;
 	}
 	tmp->label = DOTNAME;
-	// printf("%s\n", TOKEN->token);
 	if (!(ft_strcmp(tmp->token, ".name")))
 		corewar->name++;
-	if (!(ft_strcmp(tmp->token, ".comment")))
+	else if (!(ft_strcmp(tmp->token, ".comment")))
 		corewar->comment++;
 	if (corewar->name > 1 || corewar->comment > 1)
 		errors(corewar, 1, corewar->esym);
