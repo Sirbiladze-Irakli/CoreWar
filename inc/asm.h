@@ -12,7 +12,6 @@
 
 #ifndef	OP_H
 # define OP_H
-# define TOKEN corewar->tokens
 # define LIVE 0x01
 # define LD 0x02
 # define ST 0x03
@@ -33,9 +32,7 @@
 # define INSTRUCTION 22
 # define NAME 28
 # define DOTNAME 29
-# define COUNTER corewar->counter
 # define BUFF_SIZE 7
-# define ITER corewar->iter
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
@@ -47,20 +44,28 @@ typedef struct	s_ls
 {
 	char		*token;
 	int			label;
+	int         curpos;
+	int         instrbytes;
+	int         args;
 	struct s_ls	*next;
+	struct s_ls *prev;
 }				t_ls;
 
 
 typedef struct	s_cw
 {
 	t_ls		*tokens;
+	t_ls        *instruct;
 	char		*bytecode;
 	char		*line;
 	char		*inname;
 	char        *incommands;
 	char        *incomment;
 	int			res;
+	int         labelpos;
+	int         skip;
 	int         iter;
+	int         bytes;
 	int         typecode;
 	int         dir;
 	int			in;
@@ -177,5 +182,15 @@ void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type);
 void            reg_fill(t_cw *corewar, uint8_t *type);
 void            dir_fill(t_cw *corewar, uint8_t *type);
 void            ind_fill(t_cw *corewar, uint8_t *type);
+
+/*
+** write_arg.c
+*/
+
+void            write_arg(t_cw *corewar, int out, t_ls *tmp);
+void            first_two_args(t_cw *corewar, int out, t_ls *tmp);
+void            write_dir(t_cw *corewar, int out, t_ls *tmp);
+void            third_arg(t_cw *corewar, int out, t_ls *tmp);
+void            jump_lenght(t_cw *corewar, t_ls *tmp, char *label, int out);
 
 #endif

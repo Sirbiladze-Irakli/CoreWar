@@ -50,9 +50,12 @@ int             codetype(t_ls *tmp)
 
 void            count_args(t_cw *corewar, t_ls *tmp)
 {
-	ITER = 0;
+	corewar->iter = 0;
 	how_many_args(corewar, tmp);
 	corewar->dir = dir_size(tmp);
 	corewar->typecode = codetype(tmp);
+	tmp->args = corewar->counter;
+	corewar->instruct = tmp;
+	tmp->curpos = corewar->res;
 	corewar->res++;
 }

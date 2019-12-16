@@ -16,15 +16,14 @@ void			fill_magic_header(t_cw *corewar, int out)
 {
 	unsigned char	tmp[4];
 	int				size;
-	int8_t			i;
+	uint8_t			i;
 
 	size = 4;
 	i = 0;
-	while (size)
+	while (size--)
 	{
-		tmp[size - 1] = (uint8_t)((COREWAR_EXEC_MAGIC >> i));
+		tmp[size] = (COREWAR_EXEC_MAGIC >> i);
 		i += 8;
-		size--;
 	}
 	write(out, tmp, sizeof(tmp));
 }
@@ -36,7 +35,7 @@ void            fill_name(t_cw *corewar, int out)
 	int             size;
 
 	size = 0;
-	list = TOKEN;
+	list = corewar->tokens;
 	while (list)
 	{
 		if (!(ft_strcmp(list->token, ".name")))
@@ -86,7 +85,7 @@ void            fill_comment(t_cw *corewar, int out)
 	int             size;
 
 	size = 0;
-	list = TOKEN;
+	list = corewar->tokens;
 	while (list)
 	{
 		if (!(ft_strcmp(list->token, ".comment")))

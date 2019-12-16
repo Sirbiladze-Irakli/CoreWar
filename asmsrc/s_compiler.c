@@ -28,7 +28,7 @@ void			s_compiler(t_cw *corewar, char *av)
 	champ_size(corewar, out);
 	fill_comment(corewar, out);
 	fill_null(out);
-	list = TOKEN;
+	list = corewar->tokens;
 	while (list)
 	{
 		if (list->label > 0 && list->label < 17)

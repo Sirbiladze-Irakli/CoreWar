@@ -25,15 +25,17 @@ void            evaluate_instruction(t_cw *corewar, char *token)
 	if (ft_strchr(token, '%'))
 	{
 		corewar->res += corewar->dir;
+		corewar->instruct->instrbytes += corewar->dir;
 		return ;
 	}
 	else if (ft_strchr(token, 'r'))
 	{
 		corewar->res += 1;
+		corewar->instruct->instrbytes += 1;
 		return ;
 	}
-	else
-		corewar->res += 2;
+	corewar->res += IND_SIZE;
+	corewar->instruct->instrbytes += IND_SIZE;
 }
 
 int             dir_size(t_ls *tmp)

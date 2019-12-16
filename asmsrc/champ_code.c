@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   champ_code.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jormond- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/16 12:03:53 by jormond-          #+#    #+#             */
+/*   Updated: 2019/12/16 12:03:58 by jormond-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "asm.h"
 
 void            champ_code(t_cw *corewar, int out, t_ls *list)
@@ -10,6 +22,8 @@ void            champ_code(t_cw *corewar, int out, t_ls *list)
 	type = 0;
 	c = tmp->label;
 	corewar->dir = dir_size(tmp);
+	tmp->instrbytes += codetype(tmp) + 1;
+	corewar->bytes += tmp->instrbytes;
 	write(out, &c, 1);
 	if (tmp->label != LIVE && tmp->label != ZJMP && tmp->label != FORK
 	&& tmp->label != LFORK)
@@ -19,6 +33,7 @@ void            champ_code(t_cw *corewar, int out, t_ls *list)
 		write(out, &c, 1);
 	}
 	how_many_args(corewar, tmp);
+	write_arg(corewar, out, tmp);
 //	while ()
 //	{
 //	}
@@ -26,9 +41,9 @@ void            champ_code(t_cw *corewar, int out, t_ls *list)
 
 void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type)
 {
-	ITER = 0;
+	corewar->iter = 0;
 	how_many_args(corewar, tmp);
-	while (COUNTER--)
+	while (corewar->counter--)
 	{
 		tmp = tmp->next;
 		if (ft_strchr(tmp->token, 'r'))
@@ -37,36 +52,36 @@ void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type)
 			dir_fill(corewar, type);
 		else
 			ind_fill(corewar, type);
-		ITER++;
+		corewar->iter++;
 	}
 }
 
 void            reg_fill(t_cw *corewar, uint8_t *type)
 {
-	if (ITER == 0)
+	if (corewar->iter == 0)
 		(*type) |= 64;
-	else if (ITER == 1)
+	else if (corewar->iter == 1)
 		(*type) |= 16;
-	else if (ITER == 2)
+	else if (corewar->iter == 2)
 		(*type) |= 4;
 }
 
 void            dir_fill(t_cw *corewar, uint8_t *type)
 {
-	if (ITER == 0)
+	if (corewar->iter == 0)
 		(*type) |= 128;
-	else if (ITER == 1)
+	else if (corewar->iter == 1)
 		(*type) |= 32;
-	else if (ITER == 2)
+	else if (corewar->iter == 2)
 		(*type) |= 8;
 }
 
 void            ind_fill(t_cw *corewar, uint8_t *type)
 {
-	if (ITER == 0)
+	if (corewar->iter == 0)
 		(*type) |= 192;
-	else if (ITER == 1)
+	else if (corewar->iter == 1)
 		(*type) |= 48;
-	else if (ITER == 2)
+	else if (corewar->iter == 2)
 		(*type) |= 12;
 }

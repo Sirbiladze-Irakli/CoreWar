@@ -69,19 +69,23 @@ void			init_struct(t_cw *corewar)
 		output("Can't allocate a memory");
 	if (!(corewar->incomment = (char *)malloc(sizeof(char) * COMMENT_LENGTH)))
 		output("Can't allocate a memory");
-	TOKEN = NULL;
+	corewar->tokens = NULL;
+	corewar->instruct = NULL;
 	corewar->line = ft_strnew(1);
 	corewar->res = 0;
 	corewar->dir = 0;
 	corewar->in = 0;
+	corewar->skip = 0;
+	corewar->labelpos = 0;
 	corewar->eline = 1;
 	corewar->typecode = 0;
 	corewar->iter = 0;
 	corewar->pos = 4;
 	corewar->name = 0;
+	corewar->bytes = 0;
 	corewar->comment = 0;
 	corewar->esym = 1;
-	COUNTER = 0;
+	corewar->counter = 0;
 }
 
 int				main(int ac, char **av)

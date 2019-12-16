@@ -38,35 +38,3 @@ void			parse(t_cw *corewar)
 //		TOKEN = TOKEN->next;
 //	}
 }
-
-// void			add_token(t_cw *corewar, int *i)
-// {
-// 	int		j;
-
-// 	j = -1;
-// 	add_node(corewar);
-// 	if (corewar->line[(*i)] == '"')
-// 		token_in_quotes(corewar, i);
-// 	else
-// 	{
-// 		while (corewar->line[(*i)] && !(ft_isspace(corewar->line[(*i)])))
-// 		{
-// 			// if (corewar->name == 1 || corewar->comment == 1)
-// 			// 	fill_name_and_comment(corewar, i);
-// 			TOKEN->token[++j] = corewar->line[(*i)];
-// 			corewar->esym++;
-// 			(*i)++;
-// 			printf("%c\n", TOKEN->token[j]);
-// 			if (corewar->line[(*i)] == '"')
-// 				break ;
-// 		}
-// 	}
-// 	// printf("|%s|\n", TOKEN->token);
-// 	if (ft_strstr(TOKEN->token, ".name") && corewar->name != 1000)
-// 		corewar->name++;
-// 	else if (ft_strstr(TOKEN->token, ".comment") && corewar->comment != 1000)
-// 		corewar->comment++;
-// 	if (corewar->name > 1 || corewar->comment > 1)
-// 		errors(corewar, 1);
-// 	printf("-------------\n");
-// }

@@ -31,18 +31,18 @@ void            define_labels(t_cw *corewar)
 {
 	t_ls        *tmp;
 
-	tmp = TOKEN;
+	tmp = corewar->tokens;
 	while (tmp)
 	{
-		if (COUNTER != 0)
+		if (corewar->counter != 0)
 		{
 			if (corewar->typecode != 0)
 				corewar->res += corewar->typecode--;
 			evaluate_instruction(corewar, tmp->token);
 			tmp->label = INSTRUCTION;
-			COUNTER--;
+			corewar->counter--;
 		}
-		else if (tmp->label == 0 && COUNTER == 0)
+		else if (tmp->label == 0 && corewar->counter == 0)
 			fill_label(corewar, tmp);
 		if (tmp->label > 0 && tmp->label < 17)
 			count_args(corewar, tmp);
@@ -98,12 +98,12 @@ void            how_many_args(t_cw *corewar, t_ls *tmp)
 {
 	if (tmp->label == LIVE || tmp->label == ZJMP || tmp->label == FORK
 	|| tmp->label == LFORK || tmp->label == AFF)
-		COUNTER = 1;
+		corewar->counter = 1;
 	else if (tmp->label == LD || tmp->label == ST || tmp->label == LLD)
-		COUNTER = 2;
+		corewar->counter = 2;
 	else if (tmp->label == ADD || tmp->label == SUB || tmp->label == AND
 	|| tmp->label == OR || tmp->label == XOR || tmp->label == LDI ||
 	tmp->label == STI || tmp->label == LLDI)
-		COUNTER = 3;
+		corewar->counter = 3;
 
 }

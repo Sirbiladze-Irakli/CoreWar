@@ -16,14 +16,14 @@ t_ls			*add_node(t_cw *corewar)
 {
 	t_ls		*tmp;
 
-	tmp = TOKEN;
+	tmp = corewar->tokens;
 	if (!(tmp))
 		tmp = init_list(corewar);
 	else
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		add_new_node(corewar, &(tmp->next));
+		add_new_node(corewar, &tmp);
         return (tmp->next);
 	}
 	return (tmp);
@@ -37,27 +37,35 @@ t_ls			*init_list(t_cw *corewar)
 		output("Can't allocate a memory");
 	if (!(list->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
-	list->next = NULL;
 	list->label = 0;
-	TOKEN = list;
+	list->args = 0;
+	list->curpos = 0;
+	list->instrbytes = 0;
+	corewar->tokens = list;
+	list->next = NULL;
+	list->prev = NULL;
 	return (list);
 }
 
 void			add_new_node(t_cw *corewar, t_ls **tmp)
 {
-	if(!((*tmp) = (t_ls *)malloc(sizeof(t_ls))))
+	if(!(((*tmp)->next) = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	if (!((*tmp)->token = (char *)malloc(sizeof(char) * 256)))
+	if (!((*tmp)->next->token = (char *)malloc(sizeof(char) * 256)))
 		output("Can't allocate a memory");
-	(*tmp)->next = NULL;
-	(*tmp)->label = 0;
+	(*tmp)->next->label = 0;
+	(*tmp)->next->args = 0;
+	(*tmp)->next->curpos = 0;
+	(*tmp)->next->instrbytes = 0;
+	(*tmp)->next->next = NULL;
+	(*tmp)->next->prev = (*tmp);
 }
 
 t_ls			*last_node(t_cw *corewar)
 {
 	t_ls		*tmp;
 
-	tmp = TOKEN;
+	tmp = corewar->tokens;
 	while (tmp->next)
 		tmp = tmp->next;
 	return (tmp);
