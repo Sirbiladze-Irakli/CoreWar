@@ -14,7 +14,6 @@
 
 void            write_arg(t_cw *corewar, int out, t_ls *tmp)
 {
-	t_ls        *list;
 	int         res;
 	int         i;
 	char        c;
@@ -22,46 +21,41 @@ void            write_arg(t_cw *corewar, int out, t_ls *tmp)
 	i = 0;
 	res = 0;
 	corewar->iter = 0;
-	list = tmp;
-	printf("%d curpos\n", tmp->curpos);
+	corewar->tokens = tmp;
 	while (corewar->counter--)
 	{
 		tmp = tmp->next;
 		if (corewar->iter == 0 || corewar->iter == 1)
 			first_two_args(corewar, out, tmp);
-//		else if (ITER == 2)
-//			third_arg(corewar, out, tmp);
+		else if (corewar->iter == 2)
+			third_arg(corewar, out, tmp);
 		corewar->iter++;
 	}
-	if (tmp->token[i] == 'r')
-		while (tmp->token[++i] >= '0' && tmp->token[i] <= '9')
-			res = res * 10 + (tmp->token[i] - '0');
-	c = res;
-	write(out, &c, 1);
-	corewar->skip = list->instrbytes;
+	corewar->skip = corewar->tokens->instrbytes;
 }
 
 void            first_two_args(t_cw *corewar, int out, t_ls *tmp)
 {
 	int         i;
+	int         res;
 	char        r;
 	char        ind[IND_SIZE];
 
 	i = 0;
-	corewar->res = 0;
+	res = 0;
 	if (tmp->token[i] == 'r')
 	{
 		while (tmp->token[++i] >= '0' && tmp->token[i] <= '9')
-			corewar->res = corewar->res * 10 + (tmp->token[i] - '0');
-		r = corewar->res;
-		write(out, &r, REG_SIZE);
+			res = res * 10 + (tmp->token[i] - '0');
+		r = res;
+		write(out, &r, 1);
 	}
 	else if (tmp->token[i] >= '0' && tmp->token[i] <= '9')
 	{
 		while (tmp->token[++i] >= '0' && tmp->token[i] <= '9')
 			corewar->res = corewar->res * 10 + (tmp->token[i] - '0');
-		ind[1] = corewar->res & 255;
-		ind[0] = (corewar->res & 65280) >> 8;
+		ind[1] = res & 255;
+		ind[0] = (res & 65280) >> 8;
 		write (out, ind, IND_SIZE);
 	}
 	else if (tmp->token[i] == '%')
@@ -79,18 +73,18 @@ void            write_dir(t_cw *corewar, int out, t_ls *tmp)
 	i = 1;
 	res = 0;
 	ft_bzero(label, 48);
-	if (tmp->token[1] == ':')
+	if (tmp->token[i] == ':')
 	{
 		while (tmp->token[++i])
 			label[j++] = tmp->token[i];
 		label[j++] = ':';
 		jump_lenght(corewar, tmp, label, out);
 	}
-	else if (tmp->token[i] >= 0 && tmp->token[i] <= 9)
+	else
 	{
-		while (tmp->token[i++])
-			res = res * 10 + (tmp->token[i] - '0');
-
+		while (tmp->token[i])
+			res = res * 10 + (tmp->token[i++] - '0');
+		write_in_file(corewar, res, out);
 	}
 }
 
@@ -103,17 +97,18 @@ void            jump_lenght(t_cw *corewar, t_ls *tmp, char *label, int out)
 	uint8_t     shift;
 
 	i = corewar->dir;
-	list = corewar->tokens;
+	list = corewar->startnode;
 	shift = 0;
-	while (list)
-	{
+	ft_bzero(wr, corewar->dir);
+	while (list) {
 		if (list->label > 0 && list->label < 17)
 			corewar->skip = list->curpos;
 		if (!(ft_strcmp(list->token, label)))
 			break ;
 		list = list->next;
 	}
-	len = corewar->skip - tmp->curpos;
+	corewar->skip = list->next->curpos;
+	len = corewar->skip - corewar->tokens->curpos;
 	while (i--)
 	{
 		wr[i] = (wr[i] | len) >> shift;

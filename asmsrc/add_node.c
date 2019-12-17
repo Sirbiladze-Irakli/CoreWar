@@ -41,6 +41,8 @@ t_ls			*init_list(t_cw *corewar)
 	list->args = 0;
 	list->curpos = 0;
 	list->instrbytes = 0;
+	list->head = 1;
+	corewar->startnode = list;
 	corewar->tokens = list;
 	list->next = NULL;
 	list->prev = NULL;
@@ -56,6 +58,7 @@ void			add_new_node(t_cw *corewar, t_ls **tmp)
 	(*tmp)->next->label = 0;
 	(*tmp)->next->args = 0;
 	(*tmp)->next->curpos = 0;
+	(*tmp)->next->head = 0;
 	(*tmp)->next->instrbytes = 0;
 	(*tmp)->next->next = NULL;
 	(*tmp)->next->prev = (*tmp);

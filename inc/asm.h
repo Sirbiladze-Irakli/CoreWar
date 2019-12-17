@@ -45,6 +45,7 @@ typedef struct	s_ls
 	char		*token;
 	int			label;
 	int         curpos;
+	int         head;
 	int         instrbytes;
 	int         args;
 	struct s_ls	*next;
@@ -56,6 +57,7 @@ typedef struct	s_cw
 {
 	t_ls		*tokens;
 	t_ls        *instruct;
+	t_ls        *startnode;
 	char		*bytecode;
 	char		*line;
 	char		*inname;
@@ -192,5 +194,12 @@ void            first_two_args(t_cw *corewar, int out, t_ls *tmp);
 void            write_dir(t_cw *corewar, int out, t_ls *tmp);
 void            third_arg(t_cw *corewar, int out, t_ls *tmp);
 void            jump_lenght(t_cw *corewar, t_ls *tmp, char *label, int out);
+
+/*
+** third_arg.c
+*/
+
+void            third_arg(t_cw *corewar, int out, t_ls *tmp);
+void            write_in_file(t_cw *corewar, int res, int out);
 
 #endif

@@ -31,6 +31,7 @@ void			s_compiler(t_cw *corewar, char *av)
 	list = corewar->tokens;
 	while (list)
 	{
+//		printf("%s \n", list->token);
 		if (list->label > 0 && list->label < 17)
 			champ_code(corewar, out, list);
 		list = list->next;
