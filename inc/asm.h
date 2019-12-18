@@ -202,4 +202,10 @@ void            jump_lenght(t_cw *corewar, t_ls *tmp, char *label, int out);
 void            third_arg(t_cw *corewar, int out, t_ls *tmp);
 void            write_in_file(t_cw *corewar, int res, int out);
 
+/*
+** disassembler.c
+*/
+
+void            disassembler(t_cw *corewar, char *av);
+
 #endif

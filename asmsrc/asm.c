@@ -71,6 +71,7 @@ void			init_struct(t_cw *corewar)
 		output("Can't allocate a memory");
 	corewar->tokens = NULL;
 	corewar->instruct = NULL;
+	corewar->bytecode = NULL;
 	corewar->line = ft_strnew(1);
 	corewar->res = 0;
 	corewar->dir = 0;
@@ -98,14 +99,16 @@ int				main(int ac, char **av)
 	init_struct(&corewar);
 	if (!ft_strcmp(av[1], "-d"))
 	{
-		if (ac != 3)
-			output("usage : ./asm champion.s | ./asm -d champion.cor\n");
 		cor_reader(&corewar, av[2]);
+		disassembler(&corewar, av[2]);
 	}
 	else
 	{
 		s_reader(&corewar, av[1]);
 		s_compiler(&corewar, av[1]);
 	}
+	write(1, "Writing output program to ", 26);
+	write(1, corewar.bytecode, ft_strlen(corewar.bytecode));
+	write(1, "\n", 1);
 	exit(0);
 }

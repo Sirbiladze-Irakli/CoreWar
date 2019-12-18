@@ -81,12 +81,12 @@ void				dot_label(t_cw *corewar, int *i)
 		corewar->esym++;
 	}
 	tmp->label = DOTNAME;
-	if (!(ft_strcmp(tmp->token, ".name")))
-		corewar->name++;
-	else if (!(ft_strcmp(tmp->token, ".comment")))
-		corewar->comment++;
-	if (corewar->name > 1 || corewar->comment > 1)
-		errors(corewar, 1, corewar->esym);
-	if (corewar->name != 1 && corewar->comment != 1)
-		errors(corewar, 1, corewar->esym);
+//	if (!(ft_strcmp(tmp->token, ".name")))
+//		corewar->name++;
+//	else if (!(ft_strcmp(tmp->token, ".comment")))
+//		corewar->comment++;
+//	if (corewar->name > 1 || corewar->comment > 1)
+//		errors(corewar, 1, corewar->esym);
+//	if (corewar->name != 1 && corewar->comment != 1)
+//		errors(corewar, 1, corewar->esym);
 }
