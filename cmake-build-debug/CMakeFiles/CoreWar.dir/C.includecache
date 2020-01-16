@@ -1,0 +1,40 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../inc/asm.h
+unistd.h
+-
+stdlib.h
+-
+stdio.h
+-
+fcntl.h
+-
+op.h
+../inc/op.h
+cmd_op.h
+../inc/cmd_op.h
+
+../inc/cmd_op.h
+../libft/includes/libft.h
+../libft/includes/libft.h
+
+../inc/op.h
+
+../libft/includes/libft.h
+string.h
+-
+stdlib.h
+-
+unistd.h
+-
+
+/Users/jormond-/School21/CoreWar/asmsrc/disassembler.c
+asm.h
+/Users/jormond-/School21/CoreWar/asmsrc/asm.h
+

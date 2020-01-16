@@ -1,0 +1,98 @@
+# The set of languages for which implicit dependencies are needed:
+set(CMAKE_DEPENDS_LANGUAGES
+  "C"
+  )
+# The set of files for implicit dependencies of each language:
+set(CMAKE_DEPENDS_CHECK_C
+  "/Users/jormond-/School21/CoreWar/asmsrc/add_node.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/add_node.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/add_token.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/add_token.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/arg_reader.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/arg_reader.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/asm.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/asm.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/champ_code.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/champ_code.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/disassembler.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/disassembler.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/fill_magic_header.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/fill_magic_header.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/get_next_line.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/get_next_line.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/parse.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/parse.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/read_and_write.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/read_and_write.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/s_compiler.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/s_compiler.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/take_tokens.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/take_tokens.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/third_arg.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/third_arg.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/tools.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/tools.c.o"
+  "/Users/jormond-/School21/CoreWar/asmsrc/write_arg.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/asmsrc/write_arg.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_atoi.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_atoi.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_atoi_base.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_atoi_base.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_atol.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_atol.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_bzero.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_bzero.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_isalnum.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_isalnum.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_isalpha.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_isalpha.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_isascii.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_isascii.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_isdigit.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_isdigit.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_isprint.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_isprint.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_isspace.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_isspace.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_itoa.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_itoa.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_join_free.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_join_free.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_lstadd.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_lstadd.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_lstdel.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_lstdel.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_lstdelone.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_lstdelone.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_lstiter.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_lstiter.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_lstmap.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_lstmap.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_lstnew.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_lstnew.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memalloc.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memalloc.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memccpy.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memccpy.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memchr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memchr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memcmp.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memcmp.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memcpy.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memcpy.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memdel.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memdel.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memmove.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memmove.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_memset.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_memset.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putchar.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putchar.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putchar_fd.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putchar_fd.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putendl.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putendl.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putendl_fd.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putendl_fd.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putnbr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putnbr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putnbr_fd.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putnbr_fd.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putstr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putstr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_putstr_fd.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_putstr_fd.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strcat.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strcat.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strchr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strchr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strclr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strclr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strcmp.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strcmp.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strcpy.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strcpy.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strdel.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strdel.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strdup.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strdup.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strequ.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strequ.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_striter.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_striter.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_striteri.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_striteri.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strjoin.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strjoin.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strlcat.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strlcat.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strlen.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strlen.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strmap.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strmap.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strmapi.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strmapi.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strncat.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strncat.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strncmp.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strncmp.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strncpy.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strncpy.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strnequ.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strnequ.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strnew.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strnew.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strnstr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strnstr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strrchr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strrchr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strsplit.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strsplit.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strstr.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strstr.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strsub.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strsub.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_strtrim.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_strtrim.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_tolower.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_tolower.c.o"
+  "/Users/jormond-/School21/CoreWar/libft/sources/ft_toupper.c" "/Users/jormond-/School21/CoreWar/cmake-build-debug/CMakeFiles/CoreWar.dir/libft/sources/ft_toupper.c.o"
+  )
+set(CMAKE_C_COMPILER_ID "AppleClang")
+
+# The include file search paths:
+set(CMAKE_C_TARGET_INCLUDE_PATH
+  "../inc"
+  "../libft/includes"
+  )
+
+# Targets to which this target links.
+set(CMAKE_TARGET_LINKED_INFO_FILES
+  )
+
+# Fortran module output directory.
+set(CMAKE_Fortran_TARGET_MODULE_DIR "")

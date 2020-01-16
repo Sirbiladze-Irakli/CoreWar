@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:30:14 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/22 14:44:55 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/16 16:16:26 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,24 +51,3 @@ void			read_line(int fd, char **line)
 		ft_join_free(line, buf);
 	}
 }
-
-// void			valid_arg(t_cw *corewar, char *av)
-// {
-// 	int		i;
-
-// 	i = -1;
-// 	while (av[++i])
-// 	{
-// 		if (av[i] == '.' && corewar->dot == 0)
-// 		{
-// 			if (av[i + 1] == 's' && (av[i + 2] == ' ' || av[i + 2] == '\n'
-// 			|| av[i + 2] == '\t' || av[i + 2] == '\0'))
-// 				corewar->dot = 1;
-// 		}
-// 		else if (corewar->dot == 1)
-// 		{
-// 			if (av[i] != ' ' && av[i] != '\t' && av[i] != '\n' && av[i] == '\0')
-// 				strerror(0);
-// 		}
-// 	}
-// }

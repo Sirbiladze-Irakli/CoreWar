@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:39:58 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/22 15:09:53 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/16 18:45:31 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void			s_compiler(t_cw *corewar, char *av)
 	list = corewar->tokens;
 	while (list)
 	{
-//		printf("%s \n", list->token);
+		printf("%s \n", list->token);
 		if (list->label > 0 && list->label < 17)
 			champ_code(corewar, out, list);
 		list = list->next;

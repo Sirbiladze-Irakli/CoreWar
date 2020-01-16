@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   champ_code.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jormond- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 12:03:53 by jormond-          #+#    #+#             */
-/*   Updated: 2019/12/16 12:03:58 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/16 17:32:29 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,6 @@ void            champ_code(t_cw *corewar, int out, t_ls *list)
 	}
 	how_many_args(corewar, tmp);
 	write_arg(corewar, out, tmp);
-//	while ()
-//	{
-//	}
 }
 
 void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type)
