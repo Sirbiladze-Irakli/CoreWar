@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/19 18:25:36 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/16 16:27:05 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/18 15:58:51 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void            take_tokens(t_cw *corewar)
 {
 	read_line(corewar->in, &corewar->line);
 	parse(corewar);
-	return ;
 }
 
 void            parse_tokens(t_cw *corewar)

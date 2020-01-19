@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:57:36 by jormond-          #+#    #+#             */
-/*   Updated: 2019/12/11 16:10:08 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/18 14:35:54 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void            read_name(t_cw *corewar)
 
 int             codetype(t_ls *tmp)
 {
-	if (tmp->label == 0x01 || tmp->label == 0x09 || tmp->label == 0x0c
-	|| tmp->label == 0x0f)
+	if (tmp->label == LIVE || tmp->label == ZJMP || tmp->label == FORK
+	|| tmp->label == LFORK)
 		return(0);
 	else
 		return(1);

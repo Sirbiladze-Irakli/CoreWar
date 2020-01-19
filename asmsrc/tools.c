@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/29 17:16:14 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:30:23 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static int		ft_pow(int nb, int pow)
 
 void            evaluate_instruction(t_cw *corewar, char *token)
 {
+	printf("%d dirsize\n", corewar->dir);
 	if (ft_strchr(token, '%'))
 	{
 		corewar->res += corewar->dir;
@@ -50,6 +51,9 @@ int             dir_size(t_ls *tmp)
 
 void			skip_spaces(t_cw *corewar, int *i)
 {
+	if (corewar->line[(*i)] == ';' || corewar->line[(*i)] == '#')
+			while (corewar->line[(*i)] && corewar->line[(*i)] != '\n')
+				(*i)++;
 	while (ft_isspace(corewar->line[(*i)]))
 	{
 		corewar->esym++;

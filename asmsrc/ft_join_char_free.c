@@ -1,21 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isspace.c                                       :+:      :+:    :+:   */
+/*   ft_join_char_free.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/01 13:14:24 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/19 13:39:07 by jormond-         ###   ########.fr       */
+/*   Created: 2020/01/19 18:25:59 by jormond-          #+#    #+#             */
+/*   Updated: 2020/01/19 19:29:57 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "asm.h"
 
-int			ft_isspace(int c)
+void		ft_join_char_free(char **content, char c)
 {
-	if (c == '\t' || c == '\v' || c == '\n' ||
-		c == ' ' || c == '\r' || c == '\f')
-		return (1);
-	return (0);
+	char	*tmp;
+
+	printf("!\n");
+	tmp = ft_charjoin(*content, c);
+	free(*content);
+	*content = tmp;
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   add_token.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jormond- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 15:11:08 by jormond-          #+#    #+#             */
-/*   Updated: 2019/12/12 15:11:12 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/18 16:11:19 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            add_token(t_cw *corewar, int *i)
+void			add_token(t_cw *corewar, int *i)
 {
     int         j;
     t_ls        *tmp;
@@ -27,13 +27,14 @@ void            add_token(t_cw *corewar, int *i)
 	(*i)++;
 }
 
-void            define_labels(t_cw *corewar)
+void			define_labels(t_cw *corewar)  // wrong dir size!
 {
 	t_ls        *tmp;
 
 	tmp = corewar->tokens;
 	while (tmp)
 	{
+		// printf("%s\n", tmp->token);
 		if (corewar->counter != 0)
 		{
 			if (corewar->typecode != 0)

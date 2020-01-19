@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/16 16:24:24 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/19 15:46:18 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void			init_struct(t_cw *corewar)
 	corewar->eline = 1;
 	corewar->typecode = 0;
 	corewar->iter = 0;
-	corewar->pos = 4;
 	corewar->name = 0;
 	corewar->bytes = 0;
 	corewar->comment = 0;
@@ -93,22 +92,13 @@ int				main(int ac, char **av)
 {
 	t_cw	corewar;
 	
-	if (ac < 2 || ac > 3)
-		output("usage : ./asm champion.s | ./asm -d champion.cor\n");
-
+	if (ac < 2 || ac > 2)
+		output("usage : ./asm champion.s\n");
 	init_struct(&corewar);
-	if (!ft_strcmp(av[1], "-d"))
-	{
-		cor_reader(&corewar, av[2]);
-		disassembler(&corewar, av[2]);
-	}
-	else
-	{
-		s_reader(&corewar, av[1]);
-		s_compiler(&corewar, av[1]);
-	}
-	write(1, "Writing output program to ", 26);
-	write(1, corewar.bytecode, ft_strlen(corewar.bytecode));
-	write(1, "\n", 1);
+	s_reader(&corewar, av[1]);
+	s_compiler(&corewar, av[1]);
+	// write(1, "Writing output program to ", 26);
+	// write(1, corewar.bytecode, ft_strlen(corewar.bytecode));
+	// write(1, "\n", 1);
 	exit(0);
 }

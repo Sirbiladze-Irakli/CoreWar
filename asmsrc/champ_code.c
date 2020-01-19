@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 12:03:53 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/16 17:32:29 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/18 15:39:29 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,12 @@ void            champ_code(t_cw *corewar, int out, t_ls *list)
 	type = 0;
 	c = tmp->label;
 	corewar->dir = dir_size(tmp);
+	// printf("%d - instrbytes before --->> ", tmp->instrbytes);
 	tmp->instrbytes += codetype(tmp) + 1;
+	// printf("%d - instrbytes\n", tmp->instrbytes);
+	// printf("%d bytes before --->> ", corewar->bytes);
 	corewar->bytes += tmp->instrbytes;
+	// printf("%d bytes\n", corewar->bytes);
 	write(out, &c, 1);
 	if (tmp->label != LIVE && tmp->label != ZJMP && tmp->label != FORK
 	&& tmp->label != LFORK)

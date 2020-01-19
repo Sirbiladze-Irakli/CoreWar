@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2019/12/11 19:13:45 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/19 19:14:30 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,13 @@
 # define LLDI 0x0e
 # define LFORK 0x0f
 # define AFF 0x10
-# define LABEL 21
-# define INSTRUCTION 22
+# define LABEL 103
+# define COMMAND_NAME 101
+# define COMMAND_COMMENT 102
+# define DIRECT_LABEL 104
+# define DIRECT 105
+# define REGISTER 106
+# define INSTRUCTION 107
 # define NAME 28
 # define DOTNAME 29
 # define BUFF_SIZE 7
@@ -52,7 +57,6 @@ typedef struct	s_ls
 	struct s_ls *prev;
 }				t_ls;
 
-
 typedef struct	s_cw
 {
 	t_ls		*tokens;
@@ -71,13 +75,20 @@ typedef struct	s_cw
 	int         typecode;
 	int         dir;
 	int			in;
-	int         pos;
 	int         counter;
 	int			eline;
 	int			esym;
 	int			name;
 	int			comment;
 }				t_cw;
+
+typedef struct	s_parse
+{
+	short		quotes;
+	int			first_dot:1;
+	
+}				t_parse;
+
 
 /*
 ** main.c
@@ -144,7 +155,6 @@ void			dot_label(t_cw *corewar, int *i);
 */
 
 void			read_name(t_cw *corewar);
-void            fill_commands(t_cw *corewar, int out);
 int             codetype(t_ls *tmp);
 void            count_args(t_cw *corewar, t_ls *tmp);
 
@@ -153,6 +163,10 @@ void            count_args(t_cw *corewar, t_ls *tmp);
 */
 
 void			parse(t_cw *corewar);
+void			init_parser(t_parse *parser);
+void			first_pars_parse(t_cw *corewar, t_parse *parser, int *i);
+void			command(t_cw *corewar, t_parse *parser, int *i);
+void			fill_commands(t_cw *corewar, t_parse *parser, int *i);
 //void			add_token(t_cw *corewar, int *i);
 
 /*
@@ -207,5 +221,23 @@ void            write_in_file(t_cw *corewar, int res, int out);
 */
 
 void            disassembler(t_cw *corewar, char *av);
+
+/*
+** errors.c
+*/
+
+
+
+/*
+** ft_join_char_free.c
+*/
+
+void		ft_join_char_free(char **content, char c);
+
+/*
+** ft_charjoin.c
+*/
+
+char	    *ft_charjoin(char const *s1, char const c);
 
 #endif

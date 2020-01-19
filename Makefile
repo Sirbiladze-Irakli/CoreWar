@@ -6,7 +6,7 @@
 #    By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 15:03:28 by jormond-          #+#    #+#              #
-#    Updated: 2019/12/18 17:47:36 by jormond-         ###   ########.fr        #
+#    Updated: 2020/01/19 19:10:17 by jormond-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ LIB = libft/libft.a
 
 ASMFILES = asm.c arg_reader.c s_compiler.c fill_magic_header.c tools.c \
 			take_tokens.c get_next_line.c read_and_write.c parse.c add_node.c \
-			add_token.c champ_code.c write_arg.c third_arg.c disassembler.c
+			add_token.c champ_code.c write_arg.c third_arg.c errors.c \
+			ft_charjoin.c ft_join_char_free.c 
 
 ASMSRC = $(addprefix asmsrc/,$(ASMFILES))
 
