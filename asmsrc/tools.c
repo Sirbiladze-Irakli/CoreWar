@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/19 19:30:23 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/20 18:39:12 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,7 @@ void			skip_spaces(t_cw *corewar, int *i)
 	{
 		corewar->esym++;
 		if (corewar->line[(*i)] == '\n')
-		{
-			corewar->esym = 1;
-			corewar->eline++;
-		}
+			new_line(corewar);
 		(*i)++;
 	}
 }
@@ -69,4 +66,10 @@ void			skip_spaces(t_cw *corewar, int *i)
 int				separators(char c)
 {
 	return ((c == '"' || c == ',' || c == ';' || c == '#'));
+}
+
+void			new_line(t_cw *corewar)
+{
+	corewar->esym = 1;
+	corewar->eline++;
 }

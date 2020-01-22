@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/19 19:33:30 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:27:51 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,51 +44,73 @@ void			parse(t_cw *corewar)
 
 	i = 0;
 	init_parser(&parser);
-	first_pars_parse(corewar, &parser, &i);
+	first_part_parse(corewar, &parser, &i);
+
+	// while (corewar->tokens)
+	// {
+	//     printf("\n%p - tokens\n", corewar->tokens);
+	// 	printf("%s - value\n", corewar->tokens->token);
+	// 	printf("%d - label\n", corewar->tokens->label);
+	//     corewar->tokens = corewar->tokens->next;
+	// }
 }
 
 void			init_parser(t_parse *parser)
 {
+	parser->i = 0;
 	parser->quotes = 0;
 	parser->first_dot = 0;
-
+	parser->name = 0;
+	parser->comment = 0;
 }
 
-void			first_pars_parse(t_cw *corewar, t_parse *parser, int *i)
+void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)
 {
 	while (corewar->line[(*i)])
 	{
 		if (ft_isspace(corewar->line[(*i)] || corewar->line[(*i)] == ';'
-		|| corewar->line[(*i)] == '#'))
+			|| corewar->line[(*i)] == '#'))
 			skip_spaces(corewar, i);
-		else if (!ft_isspace(corewar->line[(*i)]) && parser->first_dot == 0)
+		else if (corewar->line[(*i)] == '.')
 			command(corewar, parser, i);
+		else if (corewar->line[(*i)] == '\n')
+			new_line(corewar);
+		// printf("%c", corewar->line[(*i)]);
+		corewar->esym++;
 		(*i)++;
 	}
 }
 
 void			command(t_cw *corewar, t_parse *parser, int *i)
 {
-	if (corewar->line[(*i)] != '.')
-	{
+	if (parser->first_dot == 0)
 		fill_commands(corewar, parser, i);
-	}
+	else if (parser->first_dot == 1 && (parser->comment == 1
+		|| parser->name == 1))
+		fill_commands(corewar, parser, i);
+	else if (parser->comment >= 1 && parser->name >= 1)
+		bad_line(corewar, parser, i);
 }
 
 void			fill_commands(t_cw *corewar, t_parse *parser, int *i)
 {
 	char		*line;
+	int			j;
 
-	line = ft_strnew(0);
-	int j = 0;
-	parser->first_dot = 1;
+	line = ft_strnew(1);
+	j = 0;
+	if (parser->first_dot != 3)
+		parser->first_dot++;
 	while (corewar->line[(*i)])
 	{
-		if (corewar->line[(*i)] == '"' || corewar->line[(*i)] == '\0' ||
-			ft_isspace(corewar->line[(*i)]))
+		if (ft_isspace(corewar->line[(*i)]) || corewar->line[(*i)] == '"'
+			|| corewar->line[(*i)] == '\0')
 			break ;
 		ft_join_char_free(&line, corewar->line[(*i)]);
-		printf("%s\n", line);
-
+		corewar->esym++;
+		(*i)++;
 	}
+	compare_val(corewar, parser, line, i);
+	before_new_line(corewar, parser, i);
+	free(line);
 }

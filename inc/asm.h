@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/19 19:14:30 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:28:18 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,24 @@
 # define AFF 0x10
 # define LABEL 103
 # define COMMAND_NAME 101
+# define NAME 28
 # define COMMAND_COMMENT 102
+# define COMMENT 27
 # define DIRECT_LABEL 104
 # define DIRECT 105
 # define REGISTER 106
 # define INSTRUCTION 107
-# define NAME 28
 # define DOTNAME 29
-# define BUFF_SIZE 7
+# define LEXICAL 400
+# define NAME_ERROR 401
+# define COMMENT_ERROR 402
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include "../ft_printf/includes/ft_printf.h"
 # include "op.h"
-# include "cmd_op.h"
+// # include "cmd_op.h"
 
 typedef struct	s_ls
 {
@@ -77,16 +81,18 @@ typedef struct	s_cw
 	int			in;
 	int         counter;
 	int			eline;
-	int			esym;
 	int			name;
 	int			comment;
+	int			esym;
 }				t_cw;
 
 typedef struct	s_parse
 {
+	int			i;
 	short		quotes;
-	int			first_dot:1;
-	
+	int			first_dot:2;
+	int			name:7;
+	int			comment:7;
 }				t_parse;
 
 
@@ -122,6 +128,7 @@ int             dir_size(t_ls *tmp);
 void            evaluate_instruction(t_cw *corewar, char *token);
 void			skip_spaces(t_cw *corewar, int *i);
 int				separators(char c);
+void			new_line(t_cw *corewar);
 
 /*
 ** s_compiler.c
@@ -164,7 +171,7 @@ void            count_args(t_cw *corewar, t_ls *tmp);
 
 void			parse(t_cw *corewar);
 void			init_parser(t_parse *parser);
-void			first_pars_parse(t_cw *corewar, t_parse *parser, int *i);
+void			first_part_parse(t_cw *corewar, t_parse *parser, int *i);
 void			command(t_cw *corewar, t_parse *parser, int *i);
 void			fill_commands(t_cw *corewar, t_parse *parser, int *i);
 //void			add_token(t_cw *corewar, int *i);
@@ -203,7 +210,7 @@ void            ind_fill(t_cw *corewar, uint8_t *type);
 ** write_arg.c
 */
 
-void            write_arg(t_cw *corewar, int out, t_ls *tmp);
+void            write_args(t_cw *corewar, int out, t_ls *tmp);
 void            first_two_args(t_cw *corewar, int out, t_ls *tmp);
 void            write_dir(t_cw *corewar, int out, t_ls *tmp);
 void            third_arg(t_cw *corewar, int out, t_ls *tmp);
@@ -232,12 +239,30 @@ void            disassembler(t_cw *corewar, char *av);
 ** ft_join_char_free.c
 */
 
-void		ft_join_char_free(char **content, char c);
+void			ft_join_char_free(char **content, char c);
 
 /*
-** ft_charjoin.c
+** compare_val.c
 */
 
-char	    *ft_charjoin(char const *s1, char const c);
+void			compare_val(t_cw *corewar, t_parse *parser,
+					char *line, int *i);
+void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i);
+
+/*
+** ErrorOut.c
+*/
+
+void            ErrorOut(t_cw *corewar, t_parse *parser, int flag);
+
+/*
+** bad_line.c
+*/
+
+void			bad_line(t_cw *corewar, t_parse *parser, int *i);
+void			before_new_line(t_cw *corewar, t_parse *parser, int *i);
+void			check_str(t_cw *corewar, t_parse *parser, char *str);
+
+// extern t_op		op_tab[17];
 
 #endif

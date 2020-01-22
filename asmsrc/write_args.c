@@ -1,18 +1,19 @@
+
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   write_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jormond- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 12:04:15 by jormond-          #+#    #+#             */
-/*   Updated: 2019/12/16 12:04:23 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:39:18 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            write_arg(t_cw *corewar, int out, t_ls *tmp)
+void            write_args(t_cw *corewar, int out, t_ls *tmp)
 {
 	int         res;
 	int         i;

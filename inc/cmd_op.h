@@ -6,13 +6,12 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 12:18:14 by jormond-          #+#    #+#             */
-/*   Updated: 2019/11/22 12:50:03 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/22 16:15:14 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CMD_OP_H
 # define CMD_OP_H
-# include "../libft/includes/libft.h"
 
 typedef struct	s_op
 {

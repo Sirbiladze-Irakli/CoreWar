@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/19 15:46:18 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:07:51 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void			errors(t_cw *corewar, int var, int shift)
 {
-	printf("%d name\n", corewar->name);
 	if ((corewar->name > 1 || corewar->name == 0)
 	&& ft_strcmp(corewar->line, ".name"))
 	{

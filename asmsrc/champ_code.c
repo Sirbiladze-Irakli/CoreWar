@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 12:03:53 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/18 15:39:29 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/20 17:37:29 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void            champ_code(t_cw *corewar, int out, t_ls *list)
 		write(out, &c, 1);
 	}
 	how_many_args(corewar, tmp);
-	write_arg(corewar, out, tmp);
+	write_args(corewar, out, tmp);
 }
 
 void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type)
