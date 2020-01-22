@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/22 17:28:18 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:07:45 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,19 @@ void            ErrorOut(t_cw *corewar, t_parse *parser, int flag);
 void			bad_line(t_cw *corewar, t_parse *parser, int *i);
 void			before_new_line(t_cw *corewar, t_parse *parser, int *i);
 void			check_str(t_cw *corewar, t_parse *parser, char *str);
+
+
+/*
+** write_anything.c
+*/
+
+void            write_anything(t_cw *corewar, t_parse *parser, int *i);
+
+/*
+** second_part_parse.c
+*/
+
+void			second_part_parse(t_cw *corewar, t_parse *parser, int *i);
 
 // extern t_op		op_tab[17];
 

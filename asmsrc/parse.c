@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/22 17:27:51 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/22 20:06:39 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void			parse(t_cw *corewar)
 	i = 0;
 	init_parser(&parser);
 	first_part_parse(corewar, &parser, &i);
-
+	second_part_parse(corewar, &parser, &i);
 	// while (corewar->tokens)
 	// {
 	//     printf("\n%p - tokens\n", corewar->tokens);
@@ -75,6 +75,8 @@ void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)
 			command(corewar, parser, i);
 		else if (corewar->line[(*i)] == '\n')
 			new_line(corewar);
+		else if (!ft_isspace(corewar->line[(*i)]) && parser->first_dot == 0)
+			write_anything(corewar, parser, i);
 		// printf("%c", corewar->line[(*i)]);
 		corewar->esym++;
 		(*i)++;
