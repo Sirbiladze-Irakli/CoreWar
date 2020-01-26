@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/22 20:06:39 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/26 17:59:07 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ void			parse(t_cw *corewar)
 	init_parser(&parser);
 	first_part_parse(corewar, &parser, &i);
 	second_part_parse(corewar, &parser, &i);
-	// while (corewar->tokens)
-	// {
-	//     printf("\n%p - tokens\n", corewar->tokens);
-	// 	printf("%s - value\n", corewar->tokens->token);
-	// 	printf("%d - label\n", corewar->tokens->label);
-	//     corewar->tokens = corewar->tokens->next;
-	// }
+	while (corewar->tokens)
+	{
+	    printf("\n%p - tokens\n", corewar->tokens);
+		printf("%s - value\n", corewar->tokens->token);
+		printf("%d - label\n", corewar->tokens->label);
+	    corewar->tokens = corewar->tokens->next;
+	}
 }
 
 void			init_parser(t_parse *parser)
@@ -62,14 +62,15 @@ void			init_parser(t_parse *parser)
 	parser->first_dot = 0;
 	parser->name = 0;
 	parser->comment = 0;
+	parser->args = 0;
+	parser->order = 0;
 }
 
 void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)
 {
 	while (corewar->line[(*i)])
 	{
-		if (ft_isspace(corewar->line[(*i)] || corewar->line[(*i)] == ';'
-			|| corewar->line[(*i)] == '#'))
+		if (ft_isspace(corewar->line[(*i)]) || separators(corewar->line[(*i)]))
 			skip_spaces(corewar, i);
 		else if (corewar->line[(*i)] == '.')
 			command(corewar, parser, i);
@@ -77,7 +78,9 @@ void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)
 			new_line(corewar);
 		else if (!ft_isspace(corewar->line[(*i)]) && parser->first_dot == 0)
 			write_anything(corewar, parser, i);
-		// printf("%c", corewar->line[(*i)]);
+		else if (!ft_isspace(corewar->line[(*i)]) && parser->comment == 1
+			&& parser->name == 1)
+			return ;
 		corewar->esym++;
 		(*i)++;
 	}

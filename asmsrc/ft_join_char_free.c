@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 18:25:59 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/20 13:21:38 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/24 17:49:57 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		ft_join_char_free(char **content, char c)
 {
 	char	*tmp;
-	char	chr[1];
+	char	chr[2];
 
 	ft_bzero(chr, 2);
 	chr[0] = c;

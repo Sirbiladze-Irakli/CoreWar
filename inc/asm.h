@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/22 20:07:45 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/26 18:18:12 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ typedef struct	s_parse
 	int			first_dot:2;
 	int			name:7;
 	int			comment:7;
+	int			args;
+	int			order;
 }				t_parse;
 
 
@@ -276,6 +278,23 @@ void            write_anything(t_cw *corewar, t_parse *parser, int *i);
 
 void			second_part_parse(t_cw *corewar, t_parse *parser, int *i);
 
-// extern t_op		op_tab[17];
+/*
+** who_is_who.c
+*/
+
+void			who_is_who(t_cw *corewar, t_parse *parser, int *i);
+void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str);
+int				tab(char *str);
+
+/*
+** process_instr.c
+*/
+
+void			process_instr(t_cw *corewar, t_parse *parser, int *i,
+					char *str);
+void			instr_arg(t_cw *corewar, t_parse *parser, int *i);
+void			check_line(t_cw *corewar, t_parse *parser, int *i, char *str);
+
+extern t_op		op_tab[17];
 
 #endif

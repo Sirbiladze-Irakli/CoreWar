@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/20 18:39:12 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/26 17:06:21 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,10 @@ int             dir_size(t_ls *tmp)
 
 void			skip_spaces(t_cw *corewar, int *i)
 {
-	if (corewar->line[(*i)] == ';' || corewar->line[(*i)] == '#')
-			while (corewar->line[(*i)] && corewar->line[(*i)] != '\n')
-				(*i)++;
+	if (corewar->line[(*i)] == ';' || corewar->line[(*i)] == '#'
+	|| corewar->line[(*i)] == ',')
+		while (corewar->line[(*i)] && corewar->line[(*i)] != '\n')
+			(*i)++;
 	while (ft_isspace(corewar->line[(*i)]))
 	{
 		corewar->esym++;

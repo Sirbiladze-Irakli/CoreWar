@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/22 16:25:39 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/26 16:21:04 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,10 @@ typedef struct					header_s
 	char						comment[COMMENT_LENGTH + 1];
 }								header_t;
 
-// typedef struct					s_op
-// {
-// 	char						*instr;
-// 	int							arg_num;
-// 	t_arg_type					args[3];
-// 	int							order;
-// 	int							dir_size;
-// }								t_op;
+typedef struct					s_op
+{
+	char						*instr;
+	int							arg_num;
+	int							order;
+	int							dir_size;
+}								t_op;

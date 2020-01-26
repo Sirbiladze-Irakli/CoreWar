@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/22 18:33:07 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/24 17:36:11 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,11 @@ void			bad_line(t_cw *corewar, t_parse *parser, int *i)
 		if (corewar->line[(*i)] == ';' || corewar->line[(*i)] == '#'
 			|| ft_isspace(corewar->line[(*i)]))
 			break ;
-		corewar->esym++;
 		if (corewar->line[(*i)] == '\n')
 			new_line(corewar);
 		ft_join_char_free(&str, corewar->line[(*i)]);
 		(*i)++;
 	}
-	printf("%s - str\n", str);
 	if (!ft_strcmp(str, ".name"))
 		ErrorOut(corewar, parser, NAME_ERROR);
 	if (!ft_strcmp(str, ".comment"))
@@ -41,6 +39,7 @@ void			bad_line(t_cw *corewar, t_parse *parser, int *i)
 void			before_new_line(t_cw *corewar, t_parse *parser, int *i)
 {
 	char		*str;
+	char		*tmp;
 	int			flag;
 	
 	flag = 0;
@@ -54,8 +53,11 @@ void			before_new_line(t_cw *corewar, t_parse *parser, int *i)
 		ft_join_char_free(&str, corewar->line[(*i)]);
 		(*i)++;
 	}
-	str = ft_strtrim(str);
+	tmp = ft_strtrim(str);
+	free(str);
+	str = tmp;
 	check_str(corewar, parser, str);
+	free(str);
 }
 
 void			check_str(t_cw *corewar, t_parse *parser, char *str)
