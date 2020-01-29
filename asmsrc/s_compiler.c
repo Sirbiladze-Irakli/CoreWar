@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/14 13:39:58 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/26 16:07:13 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:31:03 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			s_compiler(t_cw *corewar, char *av)
 	// while (list)
 	// {
 	// 	if (list->label > 0 && list->label < 17)
-			// champ_code(corewar, out, list);
+	// 		champ_code(corewar, out, list);
 	// 	list = list->next;
 	// }
 }

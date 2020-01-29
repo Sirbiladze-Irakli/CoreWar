@@ -1,28 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   second_part_parse.c                                :+:      :+:    :+:   */
+/*   ft_strtrim_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 19:35:03 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/29 14:25:37 by jormond-         ###   ########.fr       */
+/*   Created: 2020/01/29 14:42:24 by jormond-          #+#    #+#             */
+/*   Updated: 2020/01/29 14:51:26 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            second_part_parse(t_cw *corewar, t_parse *parser, int *i)
+void            ft_strtrim_free(char **str)
 {
-	while (corewar->line[(*i)])
-	{
-		if (ft_isspace(corewar->line[(*i)]))
-			skip_spaces(corewar, i);
-		else if (separators(corewar->line[(*i)]))
-			skip_separators(corewar, i);
-		else
-			who_is_who(corewar, parser, i);
-		if (corewar->line[(*i)] == '\n')
-			new_line(corewar);
-	}
+    char        *tmp;
+
+    tmp = ft_strtrim(*str);
+    free(*str);
+    (*str) = tmp;
 }

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/26 18:18:12 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:13:31 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@
 # include "op.h"
 // # include "cmd_op.h"
 
-typedef struct	s_ls
-{
-	char		*token;
-	int			label;
-	int         curpos;
-	int         head;
-	int         instrbytes;
-	int         args;
-	struct s_ls	*next;
-	struct s_ls *prev;
-}				t_ls;
+typedef struct	s_ls     		
+{								
+	char		*token;			/*	*/	
+	int			label;			/*	*/
+	int         curpos;			/*	*/		
+	int         head;			/*	*/			
+	int         instrbytes;		/*	*/
+	int         args;			/*	*/
+	struct s_ls	*next;			/*	*/	
+	struct s_ls *prev;			/*	*/
+}				t_ls;			
 
-typedef struct	s_cw
+typedef struct	s_cw		
 {
 	t_ls		*tokens;
 	t_ls        *instruct;
@@ -131,6 +131,14 @@ void            evaluate_instruction(t_cw *corewar, char *token);
 void			skip_spaces(t_cw *corewar, int *i);
 int				separators(char c);
 void			new_line(t_cw *corewar);
+
+/*
+** tools2.c
+*/
+
+void			skip_separators(t_cw *corewar, int *i);
+void			check_comment(t_ls *tmp);
+void			check_name(t_ls *tmp);
 
 /*
 ** s_compiler.c
@@ -290,10 +298,15 @@ int				tab(char *str);
 ** process_instr.c
 */
 
-void			process_instr(t_cw *corewar, t_parse *parser, int *i,
-					char *str);
-void			instr_arg(t_cw *corewar, t_parse *parser, int *i);
+void			process_instr(t_cw *corewar, t_parse *parser, char *str);
+void			instr_arg(t_cw *corewar, t_parse *parser, char *str);
 void			check_line(t_cw *corewar, t_parse *parser, int *i, char *str);
+
+/*
+** ft_strtrim_free.c
+*/
+
+void            ft_strtrim_free(char **str);
 
 extern t_op		op_tab[17];
 

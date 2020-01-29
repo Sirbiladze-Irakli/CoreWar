@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:27:06 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/24 17:47:05 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:14:31 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,23 @@ void			compare_val(t_cw *corewar, t_parse *parser, char *line, int *i)
 {
 	t_ls	*tmp;
 
-	tmp = corewar->tokens;
+	tmp = add_node(corewar);
 	if (!ft_strcmp(".comment", line))
 	{
-		tmp = add_node(corewar);
-		parser->comment += 1;
+		parser->comment++;
 		tmp->label = COMMAND_COMMENT;
+		ft_strcpy(tmp->token, line);
 		command_val(corewar, tmp, parser, i);
 	}
 	else if (!ft_strcmp(".name", line))
 	{
-		tmp = add_node(corewar);
-		parser->name += 1;
+		parser->name++;
 		tmp->label = COMMAND_NAME;
+		ft_strcpy(tmp->token, line);
 		command_val(corewar, tmp, parser, i);
 	}
 	else
 		ErrorOut(corewar, parser, LEXICAL);
-	// while (corewar->tokens->prev)
-	// 	corewar->tokens = corewar->tokens->prev;
 }
 
 void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i)
@@ -42,7 +40,6 @@ void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i)
 	t_ls		*val;
 	char		*str;
 
-	val = tmp;
 	val = add_node(corewar);
 	str = ft_strnew(1);
 	while (corewar->line[(*i)])
@@ -60,7 +57,7 @@ void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i)
 	free(str);
 	parser->quotes = 0;
 	if (tmp->label == COMMAND_COMMENT)
-		val->label = COMMENT;
+		check_comment(val);
 	else
-		val->label = NAME;
+		check_name(val);
 }

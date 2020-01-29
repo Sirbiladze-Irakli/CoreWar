@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/20 17:07:51 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:31:12 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,6 @@ int				main(int ac, char **av)
 	init_struct(&corewar);
 	s_reader(&corewar, av[1]);
 	s_compiler(&corewar, av[1]);
-	// write(1, "Writing output program to ", 26);
-	// write(1, corewar.bytecode, ft_strlen(corewar.bytecode));
-	// write(1, "\n", 1);
+	ft_printf("Writing output program to %s\n", corewar.bytecode);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/26 17:52:42 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/29 15:19:48 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,15 @@
 void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 {
 	char        *str;
-	char		*tmp;
 
 	str = ft_strnew(1);
 	while (corewar->line[(*i)])
 	{
 		if (ft_isspace(corewar->line[(*i)]) || separators(corewar->line[(*i)]))
 		{
-			tmp = ft_strtrim(str);
-			free(str);
-			str = tmp;
+			if (parser->args != 0)
+				instr_arg(corewar, parser, str);
+			ft_strtrim_free(&str);
 			define_str(corewar, parser, i, str);
 			free(str);
 			return ;
@@ -34,7 +33,6 @@ void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 		(*i)++;
 	}
 	free(str);
-	return ;
 }
 
 void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
@@ -43,7 +41,7 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 	
 	tmp = corewar->tokens;
 	if (tab(str))
-		process_instr(corewar, parser, i, str);
+		process_instr(corewar, parser,  str);
 	else if (str[ft_strlen(str) - 1] == ':')
 	{
 		tmp = add_node(corewar);

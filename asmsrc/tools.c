@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/26 17:06:21 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/29 17:13:25 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ static int		ft_pow(int nb, int pow)
 
 void            evaluate_instruction(t_cw *corewar, char *token)
 {
-	printf("%d dirsize\n", corewar->dir);
 	if (ft_strchr(token, '%'))
 	{
 		corewar->res += corewar->dir;
@@ -51,16 +50,27 @@ int             dir_size(t_ls *tmp)
 
 void			skip_spaces(t_cw *corewar, int *i)
 {
-	if (corewar->line[(*i)] == ';' || corewar->line[(*i)] == '#'
-	|| corewar->line[(*i)] == ',')
-		while (corewar->line[(*i)] && corewar->line[(*i)] != '\n')
-			(*i)++;
 	while (ft_isspace(corewar->line[(*i)]))
 	{
 		corewar->esym++;
 		if (corewar->line[(*i)] == '\n')
 			new_line(corewar);
 		(*i)++;
+	}
+}
+
+void			skip_separators(t_cw *corewar, int *i)
+{
+	if (corewar->line[(*i)] == ';' || corewar->line[(*i)] == '#')
+		while (corewar->line[(*i)] && corewar->line[(*i)] != '\n')
+		{
+			(*i)++;
+			new_line(corewar);
+		}
+	else if (corewar->line[(*i)] == ',' || corewar->line[(*i)] == '"')
+	{
+		(*i)++;
+		corewar->esym++;
 	}
 }
 
@@ -73,4 +83,26 @@ void			new_line(t_cw *corewar)
 {
 	corewar->esym = 1;
 	corewar->eline++;
+}
+
+void			check_comment(t_ls *tmp)
+{
+	if (ft_strlen(tmp->token) > COMMENT_LENGTH)
+	{
+		ft_printf("Champion comment too long (Max length %d)\n"
+			, COMMENT_LENGTH);
+		exit(0);
+	}
+	tmp->label = COMMENT;
+}
+
+void			check_name(t_ls *tmp)
+{
+	if (ft_strlen(tmp->token) > PROG_NAME_LENGTH)
+	{
+		ft_printf("Champion name too long (Max length %d)\n"
+			, PROG_NAME_LENGTH);
+		exit(0);
+	}
+	tmp->label = NAME;
 }
