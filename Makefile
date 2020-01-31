@@ -6,7 +6,7 @@
 #    By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 15:03:28 by jormond-          #+#    #+#              #
-#    Updated: 2020/01/29 14:47:41 by jormond-         ###   ########.fr        #
+#    Updated: 2020/01/31 15:36:09 by jormond-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ ASMFILES = asm.c arg_reader.c s_compiler.c fill_magic_header.c tools.c \
 			add_token.c champ_code.c write_args.c third_arg.c errors.c \
 			ft_join_char_free.c compare_val.c ErrorOut.c bad_line.c op.c \
 			write_anything.c second_part_parse.c who_is_who.c process_instr.c \
-			ft_strtrim_free.c
+			ft_strtrim_free.c tools2.c
 
 ASMSRC = $(addprefix asmsrc/,$(ASMFILES))
 

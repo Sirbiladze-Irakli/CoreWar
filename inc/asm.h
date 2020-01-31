@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/29 17:13:31 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/31 18:08:13 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@
 # define DIRECT 105
 # define REGISTER 106
 # define INSTRUCTION 107
+# define INDIRECTION 108
 # define DOTNAME 29
 # define LEXICAL 400
 # define NAME_ERROR 401
@@ -126,17 +127,17 @@ void			read_line(int fd, char **line);
 ** tools.c
 */
 
-int             dir_size(t_ls *tmp);
 void            evaluate_instruction(t_cw *corewar, char *token);
+int             dir_size(t_ls *tmp);
 void			skip_spaces(t_cw *corewar, int *i);
-int				separators(char c);
-void			new_line(t_cw *corewar);
+void			skip_separators(t_cw *corewar, int *i);
 
 /*
 ** tools2.c
 */
 
-void			skip_separators(t_cw *corewar, int *i);
+int				separators(char c);
+void			new_line(t_cw *corewar);
 void			check_comment(t_ls *tmp);
 void			check_name(t_ls *tmp);
 
@@ -300,13 +301,22 @@ int				tab(char *str);
 
 void			process_instr(t_cw *corewar, t_parse *parser, char *str);
 void			instr_arg(t_cw *corewar, t_parse *parser, char *str);
-void			check_line(t_cw *corewar, t_parse *parser, int *i, char *str);
+int				count_bytes(int j);
+void			count_instr(t_cw *corewar, t_ls *tmp, char *str);
+void			wrong_instr(t_cw *corewar);
 
 /*
 ** ft_strtrim_free.c
 */
 
 void            ft_strtrim_free(char **str);
+
+
+
+
+
+void			check_line(t_cw *corewar, t_parse *parser, int *i, char *str);
+
 
 extern t_op		op_tab[17];
 

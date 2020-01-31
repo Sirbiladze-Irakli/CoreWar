@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/29 17:31:12 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/31 20:03:28 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,10 @@ void			output(char *str)
 	exit(0);
 }
 
+/*
+** инициализируем основную структуру COREWAR
+*/
+
 void			init_struct(t_cw *corewar)
 {
 	if (!(corewar->inname = (char *)malloc(sizeof(char) * PROG_NAME_LENGTH)))
@@ -83,9 +87,16 @@ void			init_struct(t_cw *corewar)
 	corewar->name = 0;
 	corewar->bytes = 0;
 	corewar->comment = 0;
-	corewar->esym = 1;
+	corewar->esym = 0;
 	corewar->counter = 0;
 }
+
+/*
+** Объявляем и инициализируем основную структуру с которой будем работать
+** на протяжении всей жизни программы. Проверяем кол-во подаваемых аргументов
+** если ошибка - вываливаем usage и завершаем программу иначе начинаем попытку
+** работы с поданным файлом.
+*/
 
 int				main(int ac, char **av)
 {

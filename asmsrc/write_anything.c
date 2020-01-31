@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 19:53:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/22 20:01:37 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/01/31 14:52:00 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void            write_anything(t_cw *corewar, t_parse *parser, int *i)
 
 	line = ft_strnew(1);
 	j = 0;
-	if (parser->first_dot != 3)
-		parser->first_dot++;
 	while (corewar->line[(*i)])
 	{
 		if (ft_isspace(corewar->line[(*i)]) || corewar->line[(*i)] == '"'
