@@ -6,36 +6,11 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/31 20:08:42 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:09:22 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
-
-// void			parse(t_cw *corewar)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	while (corewar->line[i])
-// 	{
-// 		if (ft_isspace(corewar->line[i]) || corewar->line[i] == ';' ||
-// 			corewar->line[i] == '#')
-// 			skip_spaces(corewar, &i);
-// 		else if (corewar->line[i] == '.')
-// 			dot_label(corewar, &i);
-// 		else if (corewar->line[i] == '"')
-// 			token_in_quotes(corewar, &i);
-// 		else
-// 			add_token(corewar, &i);
-// 	}
-// 	define_labels(corewar);
-// //	while (TOKEN)
-// //	{
-// //		printf("%p\n", TOKEN);
-// //		TOKEN = TOKEN->next;
-// //	}
-// }
 
 void			parse(t_cw *corewar)
 {
@@ -43,24 +18,25 @@ void			parse(t_cw *corewar)
 	t_parse	parser;
 
 	i = 0;
+	check_EOF(corewar, &i);
 	init_parser(&parser);
 	first_part_parse(corewar, &parser, &i);
 	second_part_parse(corewar, &parser, &i);
-	while (corewar->tokens)
-	{
-	    printf("\n%p - tokens\n", corewar->tokens);
-		printf("|%s| - value\n", corewar->tokens->token);
-		printf("%d - label\n", corewar->tokens->label);
-		if (corewar->tokens->next == NULL)
-			break ;
-	    corewar->tokens = corewar->tokens->next;
-	}
-	while (corewar->tokens)
-	{
-		if (corewar->tokens->prev == NULL)
-			break ;
-		corewar->tokens = corewar->tokens->prev;
-	}
+	// while (corewar->tokens)
+	// {
+	//     printf("\n%p - tokens\n", corewar->tokens);
+	// 	printf("|%s| - value\n", corewar->tokens->token);
+	// 	printf("%d - label\n", corewar->tokens->label);
+	// 	if (corewar->tokens->next == NULL)
+	// 		break ;
+	//     corewar->tokens = corewar->tokens->next;
+	// }
+	// while (corewar->tokens)
+	// {
+	// 	if (corewar->tokens->prev == NULL)
+	// 		break ;
+	// 	corewar->tokens = corewar->tokens->prev;
+	// }
 }
 
 void			init_parser(t_parse *parser)
@@ -72,6 +48,8 @@ void			init_parser(t_parse *parser)
 	parser->comment = 0;
 	parser->args = 0;
 	parser->order = 0;
+	parser->commas = 0;
+	parser->comflag = 0;
 }
 
 void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/31 15:40:46 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:48:08 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,14 @@ void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 	{
 		if (ft_isspace(corewar->line[(*i)]) || separators(corewar->line[(*i)]))
 		{
+			// printf("%d\n", parser->args);
 			if (parser->args != 0)
 				instr_arg(corewar, parser, str);
-			ft_strtrim_free(&str);
-			define_str(corewar, parser, i, str);
+			else
+			{
+				ft_strtrim_free(&str);
+				define_str(corewar, parser, i, str);
+			}
 			free(str);
 			return ;
 		}
@@ -49,7 +53,7 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 		ft_strcpy(tmp->token, str);
 	}
 	else
-		return ;         // write func for errors processing
+		ft_errors(corewar, parser);        // write func for errors processing
 }
 
 int				tab(char *str)
@@ -63,3 +67,18 @@ int				tab(char *str)
 	return 0;
 }
 
+void			check_instr(t_cw *corewar, t_parse *parser, int *i)
+{
+	// printf("%d args\n", parser->args);
+	// printf("%d commas\n", parser->commas);
+	// printf("%s\n", corewar->lastinstr);
+	// printf("%s\n", corewar->lastarg);
+	// printf("|%c|\n\n", corewar->line[(*i)]);
+	if (parser->args > 0 && parser->commas == (parser->args * -1) 
+		&& corewar->line[(*i)] == '\n')
+		ErrorOut(corewar, parser, ARG_NUM_ERROR);
+	else if (parser->args > 0 && corewar->line[(*i)] == '\n')
+		ErrorOut(corewar, parser, END_LINE_ERROR);
+	else if (parser->args == 0 && parser->commas < 0)
+		ft_errors(corewar, parser);
+}

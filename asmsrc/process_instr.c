@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:52:56 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/31 18:39:51 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/03 17:49:09 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,13 @@ void			process_instr(t_cw *corewar, t_parse *parser, char *str)
 	tmp->label = tab(str);
 	corewar->res += count_bytes(tmp->label);
 	parser->order = tmp->label;
+	parser->comflag = 1;
 	parser->args = op_tab[tmp->label].arg_num;
+	if (parser->args > 1)
+		parser->commas = parser->args * -1 + 1;
 	corewar->dir = op_tab[tmp->label].dir_size;
 	ft_strcpy(tmp->token, str);
-	// while (corewar->line[(*i)])
-	// {
-		// printf("|%c|", corewar->line[(*i)]);
-		// if (ft_isspace(corewar->line[(*i)]))
-		// 	skip_spaces(corewar, i);
-		// else if (separators(corewar->line[(*i)]))
-		// 	skip_separators(corewar, i);
-		// if (corewar->line[(*i)] == '\n')
-		// {
-		// 	new_line(corewar);
-		// 	break ;
-		// }
-		// else
-		// 	instr_arg(corewar, parser, i);
-		// if (parser->args == 0)
-		// 	break ;
-	// }
-	// check_line(corewar, parse, i, str); 
+	ft_strcpy(corewar->lastinstr, str);
 }
 
 void			instr_arg(t_cw *corewar, t_parse *parser, char *str)
@@ -56,24 +42,13 @@ void			instr_arg(t_cw *corewar, t_parse *parser, char *str)
 	tmp = add_node(corewar);
 	tmp->label = INSTRUCTION;
 	parser->args--;
+	ft_strcpy(corewar->lastarg, str);
 	ft_strcpy(tmp->token, str);
-	count_instr(corewar, tmp, str);
-	// char	*str;
-
-	// str = ft_strnew(1);
-	// while (corewar->line[(*i)])
-	// {
-	// 	if (ft_isspace(corewar->line[(*i)]))
-	// 		break ;
-	// 	if (separators(corewar->line[(*i)]))
-	// 		break ;
-	// 	// printf("|%c|", corewar->line[(*i)]);
-	// 	ft_join_char_free(&str, corewar->line[(*i)]);
-	// 	(*i)++;
-	// }
-	// parser->args--;
-	// // printf("%s\n", str);
-	// free(str);
+	// count_instr(corewar, tmp, str);
+	right_arg(corewar, parser, tmp, str);
+	if (parser->comflag == 0)
+		ft_errors(corewar, parser);
+	parser->comflag = 0;
 }
 
 int				count_bytes(int label)
@@ -83,32 +58,32 @@ int				count_bytes(int label)
 	return 2;
 }
 
-void			count_instr(t_cw *corewar, t_ls *tmp, char *str)
-{
-	if (str[0] == 'r' && ((str[1] >= '0' && str[1] <= '9')
-		|| (str[2] >= '0' && str[2] <= '9')))
-	{
-		corewar->res += 1;
-		tmp->label = REGISTER;
-	}
-	else if (str[0] >= '0' && str[0] <= '9')
-	{
-		corewar->res += 2;
-		tmp->label = INDIRECTION;
-	}
-	else if (str[0] == '%' && str[1] == ':')
-	{
-		corewar->res += corewar->dir;
-		tmp->label = DIRECT_LABEL;
-	}
-	else if (str[0] == '%')
-	{
-		corewar->res += corewar->dir;
-		tmp->label = DIRECT;
-	}
-	else
-		wrong_instr(corewar);
-}
+// void			count_instr(t_cw *corewar, t_ls *tmp, char *str)
+// {
+// 	if (str[0] == 'r' && ((str[1] >= '0' && str[1] <= '9')
+// 		|| (str[2] >= '0' && str[2] <= '9')))
+// 	{
+// 		corewar->res += 1;
+// 		tmp->label = REGISTER;
+// 	}
+// 	else if (str[0] >= '0' && str[0] <= '9')
+// 	{
+// 		corewar->res += 2;
+// 		tmp->label = INDIRECTION;
+// 	}
+// 	else if (str[0] == '%' && str[1] == ':')
+// 	{
+// 		corewar->res += corewar->dir;
+// 		tmp->label = DIRECT_LABEL;
+// 	}
+// 	else if (str[0] == '%')
+// 	{
+// 		corewar->res += corewar->dir;
+// 		tmp->label = DIRECT;
+// 	}
+// 	else
+// 		wrong_instr(corewar);
+// }
 
 void			wrong_instr(t_cw *corewar)
 {

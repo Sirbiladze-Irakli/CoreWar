@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/31 18:08:13 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/03 20:29:45 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,18 @@
 # define LEXICAL 400
 # define NAME_ERROR 401
 # define COMMENT_ERROR 402
+# define END_LINE_ERROR 403
+# define ARG_NUM_ERROR 404
+# define SEPARATOR_ERROR 405
+# define T_REG_PATTERN "^r[0-9]{1,2}$"
+# define T_DIR_PATTERN "^%-?0*[0-9]+$|^%:[0-9a-z_]+$"
+# define PATTERN_T_IND "^-?[0-9]+$"
+
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
+# include <regex.h>
 # include "../ft_printf/includes/ft_printf.h"
 # include "op.h"
 // # include "cmd_op.h"
@@ -72,6 +80,8 @@ typedef struct	s_cw
 	char		*inname;
 	char        *incommands;
 	char        *incomment;
+	char		lastinstr[5];
+	char		lastarg[30];
 	int			res;
 	int         labelpos;
 	int         skip;
@@ -94,6 +104,8 @@ typedef struct	s_parse
 	int			first_dot:2;
 	int			name:7;
 	int			comment:7;
+	int			commas:4;
+	int			comflag:2;
 	int			args;
 	int			order;
 }				t_parse;
@@ -286,6 +298,8 @@ void            write_anything(t_cw *corewar, t_parse *parser, int *i);
 */
 
 void			second_part_parse(t_cw *corewar, t_parse *parser, int *i);
+void			space_check(t_cw *corewar, t_parse *parser, int *i);
+void			separator_check(t_cw *corewar, t_parse *parser, int *i);
 
 /*
 ** who_is_who.c
@@ -294,6 +308,7 @@ void			second_part_parse(t_cw *corewar, t_parse *parser, int *i);
 void			who_is_who(t_cw *corewar, t_parse *parser, int *i);
 void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str);
 int				tab(char *str);
+void			check_instr(t_cw *corewar, t_parse *parser, int *i);
 
 /*
 ** process_instr.c
@@ -311,12 +326,33 @@ void			wrong_instr(t_cw *corewar);
 
 void            ft_strtrim_free(char **str);
 
+/*
+** errors.c
+*/
 
-
-
-
+void            ft_errors(t_cw *corewar, t_parse *parser);
+void            empty_separator(t_cw *corewar, t_parse *parser, t_ls *tmp);
+void            check_EOF(t_cw *corewar, int *i);
 void			check_line(t_cw *corewar, t_parse *parser, int *i, char *str);
 
+/*
+** right_arg.c
+*/
+
+void			right_arg(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str);
+void			first(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str);
+void			second(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str);
+void			third(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str);
+void			distrib(t_cw *corewar, t_ls *tmp, char *str, char flag);
+
+/*
+** right_arg2.c
+*/
+
+void			distrib2(t_cw *corewar, t_ls *tmp, char *str, char flag);
+int	            check_reg(t_cw *corewar, t_ls *tmp, char *str);
+int	            check_dir(t_cw *corewar, t_ls *tmp, char *str);
+int	            check_ind(t_cw *corewar, t_ls *tmp, char *str);
 
 extern t_op		op_tab[17];
 

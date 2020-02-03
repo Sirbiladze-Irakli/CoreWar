@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/24 17:36:11 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/02 15:23:22 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,7 @@ void			before_new_line(t_cw *corewar, t_parse *parser, int *i)
 	
 	flag = 0;
 	str = ft_strnew(1);
-	if (corewar->line[++(*i)] == '\n')
-		new_line(corewar);
+	(*i)++;
 	while (corewar->line[(*i)] && corewar->line[(*i)] != '\n')
 	{
 		if (ft_isspace(corewar->line[(*i)]))

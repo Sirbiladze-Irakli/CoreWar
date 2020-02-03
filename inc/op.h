@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/10/04 11:33:27 by zaz               #+#    #+#             */
-/*   Updated: 2020/01/31 17:44:11 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/02 18:10:22 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,9 @@ typedef struct					header_s
 
 typedef struct					s_op
 {
-	char						*instr;
+	char						*instr;	
 	int							arg_num;
 	int							order;
 	int							dir_size;
+	char						args[3];
 }								t_op;
