@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/02 15:23:22 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:38:35 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ void			bad_line(t_cw *corewar, t_parse *parser, int *i)
 		(*i)++;
 	}
 	if (!ft_strcmp(str, ".name"))
-		ErrorOut(corewar, parser, NAME_ERROR);
+		ErrorOut(corewar, NAME_ERROR);
 	if (!ft_strcmp(str, ".comment"))
-		ErrorOut(corewar, parser, COMMENT_ERROR);
+		ErrorOut(corewar, COMMENT_ERROR);
 	else
-		ErrorOut(corewar, parser, LEXICAL);
+		ErrorOut(corewar, LEXICAL);
 	free(str);
 }
 

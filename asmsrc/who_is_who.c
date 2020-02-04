@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/03 17:48:08 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:39:28 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 {
 	t_ls		*tmp;
+	t_ls		*labels;
 	
 	tmp = corewar->tokens;
 	if (tab(str))
@@ -49,6 +50,7 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 	else if (str[ft_strlen(str) - 1] == ':')
 	{
 		tmp = add_node(corewar);
+		labels = add_node(corewar);
 		tmp->label = LABEL;
 		ft_strcpy(tmp->token, str);
 	}
@@ -76,9 +78,9 @@ void			check_instr(t_cw *corewar, t_parse *parser, int *i)
 	// printf("|%c|\n\n", corewar->line[(*i)]);
 	if (parser->args > 0 && parser->commas == (parser->args * -1) 
 		&& corewar->line[(*i)] == '\n')
-		ErrorOut(corewar, parser, ARG_NUM_ERROR);
+		ErrorOut(corewar, ARG_NUM_ERROR);
 	else if (parser->args > 0 && corewar->line[(*i)] == '\n')
-		ErrorOut(corewar, parser, END_LINE_ERROR);
+		ErrorOut(corewar, END_LINE_ERROR);
 	else if (parser->args == 0 && parser->commas < 0)
 		ft_errors(corewar, parser);
 }

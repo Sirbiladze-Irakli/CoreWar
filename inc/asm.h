@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/03 20:29:45 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:29:12 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@
 # define DIRECT_LABEL 104
 # define DIRECT 105
 # define REGISTER 106
-# define INSTRUCTION 107
+# define INDIRECT_LABEL 107
 # define INDIRECTION 108
+# define INSTRUCTION 109
 # define DOTNAME 29
 # define LEXICAL 400
 # define NAME_ERROR 401
@@ -46,8 +47,11 @@
 # define ARG_NUM_ERROR 404
 # define SEPARATOR_ERROR 405
 # define T_REG_PATTERN "^r[0-9]{1,2}$"
-# define T_DIR_PATTERN "^%-?0*[0-9]+$|^%:[0-9a-z_]+$"
-# define PATTERN_T_IND "^-?[0-9]+$"
+# define T_DIR_PATTERN "^%-?0*[0-9]+$"
+# define T_DIR_LABEL_PATTERN "^%:[0-9a-z_]+$"
+# define T_IND_PATTERN "^-?[0-9]+$"
+# define T_IND_LABEL_PATTERN "^:[0-9a-z_]+$"
+
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -72,14 +76,13 @@ typedef struct	s_ls
 
 typedef struct	s_cw		
 {
+	t_ls		*labels;
 	t_ls		*tokens;
 	t_ls        *instruct;
 	t_ls        *startnode;
 	char		*bytecode;
 	char		*line;
 	char		*inname;
-	char        *incommands;
-	char        *incomment;
 	char		lastinstr[5];
 	char		lastarg[30];
 	int			res;
@@ -106,6 +109,7 @@ typedef struct	s_parse
 	int			comment:7;
 	int			commas:4;
 	int			comflag:2;
+	int			countArgs:4;
 	int			args;
 	int			order;
 }				t_parse;
@@ -276,7 +280,7 @@ void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i);
 ** ErrorOut.c
 */
 
-void            ErrorOut(t_cw *corewar, t_parse *parser, int flag);
+void            ErrorOut(t_cw *corewar, int flag);
 
 /*
 ** bad_line.c
@@ -300,7 +304,7 @@ void            write_anything(t_cw *corewar, t_parse *parser, int *i);
 void			second_part_parse(t_cw *corewar, t_parse *parser, int *i);
 void			space_check(t_cw *corewar, t_parse *parser, int *i);
 void			separator_check(t_cw *corewar, t_parse *parser, int *i);
-
+void			compare_labels(t_cw *corewar, t_parse *parser);
 /*
 ** who_is_who.c
 */
@@ -318,7 +322,7 @@ void			process_instr(t_cw *corewar, t_parse *parser, char *str);
 void			instr_arg(t_cw *corewar, t_parse *parser, char *str);
 int				count_bytes(int j);
 void			count_instr(t_cw *corewar, t_ls *tmp, char *str);
-void			wrong_instr(t_cw *corewar);
+void			wrong_instr(t_cw *corewar, t_ls *tmp, char *str);
 
 /*
 ** ft_strtrim_free.c
@@ -353,6 +357,12 @@ void			distrib2(t_cw *corewar, t_ls *tmp, char *str, char flag);
 int	            check_reg(t_cw *corewar, t_ls *tmp, char *str);
 int	            check_dir(t_cw *corewar, t_ls *tmp, char *str);
 int	            check_ind(t_cw *corewar, t_ls *tmp, char *str);
+
+/*
+** error.c
+*/
+
+void            error_vars(t_cw *corewar, char *str, int flag);
 
 extern t_op		op_tab[17];
 

@@ -6,13 +6,13 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 15:43:57 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/02 16:21:49 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/04 18:44:53 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            ErrorOut(t_cw *corewar, t_parse *parser, int flag)
+void            ErrorOut(t_cw *corewar, int flag)
 {
     if (flag == LEXICAL)
         ft_printf("Lexical error at [%d:%d]\n", corewar->eline, corewar->esym);

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:03:05 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/02 19:10:07 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/04 19:17:32 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 void			right_arg(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str)
 {
 	printf("%s\n", tmp->token);
-	if (parser->args == 2)
+	if (parser->countArgs == 1)
 		first(corewar, parser, tmp, str);
-	else if (parser->args == 1)
+	else if (parser->countArgs == 2)
 		second(corewar, parser, tmp, str);
-	else if (parser->args == 0)
+	else if (parser->countArgs == 3)
 		third(corewar, parser, tmp, str);
 	printf("%s\n\n", tmp->token);
 }
@@ -91,5 +91,5 @@ void			distrib(t_cw *corewar, t_ls *tmp, char *str, char flag)
 	else
 		distrib2(corewar, tmp, str, flag);
 	if (res > 0)
-		wrong_instr(corewar);
+		wrong_instr(corewar, tmp, str);
 }	

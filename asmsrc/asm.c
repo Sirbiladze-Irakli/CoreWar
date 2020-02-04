@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/02 16:28:44 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/04 17:36:01 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,6 @@ void			output(char *str)
 void			init_struct(t_cw *corewar)
 {
 	if (!(corewar->inname = (char *)malloc(sizeof(char) * PROG_NAME_LENGTH)))
-		output("Can't allocate a memory");
-	if (!(corewar->incommands = (char *)malloc(sizeof(char) * CHAMP_MAX_SIZE)))
-		output("Can't allocate a memory");
-	if (!(corewar->incomment = (char *)malloc(sizeof(char) * COMMENT_LENGTH)))
 		output("Can't allocate a memory");
 	ft_bzero(corewar->lastinstr, 5);
 	ft_bzero(corewar->lastarg, 30);
