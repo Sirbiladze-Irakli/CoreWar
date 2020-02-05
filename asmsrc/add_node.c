@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:21:26 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/02 15:23:35 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:27:58 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ t_ls			*init_list(t_cw *corewar)
 
 void			add_new_node(t_cw *corewar, t_ls **tmp)
 {
-	if(!(((*tmp)->next) = (t_ls *)malloc(sizeof(t_ls))))
+	if (!(((*tmp)->next) = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
 	if (!((*tmp)->next->token = (char *)malloc(sizeof(char) * (COMMENT_LENGTH + 1000))))
 		output("Can't allocate a memory");

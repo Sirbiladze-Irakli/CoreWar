@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:52:56 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 19:17:54 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/05 20:08:12 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int				count_bytes(int label)
 
 void			wrong_instr(t_cw *corewar, t_ls *tmp, char *str)
 {
-	error_vars(corewar, str, INSTRUCTION);
+	ft_printf("No such label %s while attempting to dereference token [TOKEN]\
+	\"%s\"\n", str, tmp->token);
 }

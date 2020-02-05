@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 19:35:03 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 19:35:17 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/05 20:08:39 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,37 +53,40 @@ void			separator_check(t_cw *corewar, t_parse *parser, int *i)
 void			compare_labels(t_cw *corewar, t_parse *parser)     
 {
 	t_ls		*arg;
-	t_ls		*label;
 
 	arg = corewar->tokens;
-	printf("%s arg\n", arg->token);
-	label = corewar->labels;
-	printf("%s label\n", label->token);
-	while (arg)
+	while (corewar->tokens)
 	{
-		printf("!\n");
-		if (arg->label >= 104 && arg->label <= 109)
-		{
-			while (label)
-			{
-				printf("whats wrong\n");
-				if (!ft_strnstr(arg->token, label->token, (ft_strlen(label->token) - 1)))
-					break ;
-				if (label->next == NULL)
-					wrong_instr(corewar, arg, arg->token);
-				label = label->next;
-			}
-			label = label->prev;
-			while (label->prev)
-				label = label->prev;
-		}
-		arg = arg->next;
+		if (corewar->tokens->label == 104 || corewar->tokens->label == 107)
+			compare(corewar, parser, corewar->tokens);
+		corewar->tokens = corewar->tokens->next;
 	}
-	arg = arg->prev;
-	
+	corewar->tokens = arg;
 }
 
-void			wrong_way(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str)
+void			compare(t_cw *corewar, t_parse *parser, t_ls *arg)
 {
-	
+	char		*toFind;
+
+	parser->j = 0;
+	if (arg->label == DIRECT_LABEL)
+		toFind = ft_strsub(arg->token, 2, ft_strlen(arg->token) - 1);	
+	else if (arg->label == INDIRECT_LABEL)
+		toFind = ft_strsub(arg->token, 1, ft_strlen(arg->token) - 1);
+	while (corewar->labels[parser->j])
+	{
+		if (!ft_strcmp(toFind, corewar->labels[parser->j++]))
+		{
+			free(toFind);
+			return ;
+		}
+	}
+	wrong_instr(corewar, arg, toFind);
+	free(toFind);
+	exit(0);
 }
+
+// void			wrong_way(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str)
+// {
+	
+// }

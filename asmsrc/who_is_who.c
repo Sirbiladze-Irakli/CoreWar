@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:39:28 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:00:48 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,14 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 	else if (str[ft_strlen(str) - 1] == ':')
 	{
 		tmp = add_node(corewar);
-		labels = add_node(corewar);
 		tmp->label = LABEL;
+		if (!(corewar->labels[parser->j] = (char *)malloc(sizeof(char)
+			* ft_strlen(str))))
+			output("Can't alloceta a memory");
+		ft_bzero(corewar->labels[parser->j], ft_strlen(str));
+		ft_strncpy(corewar->labels[parser->j], str, ft_strlen(str) - 1);
 		ft_strcpy(tmp->token, str);
+		parser->j++;
 	}
 	else
 		ft_errors(corewar, parser);        // write func for errors processing

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 19:16:48 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/05 18:41:57 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void			parse(t_cw *corewar)
 void			init_parser(t_parse *parser)
 {
 	parser->i = 0;
+	parser->j = 0;
 	parser->quotes = 0;
 	parser->first_dot = 0;
 	parser->name = 0;

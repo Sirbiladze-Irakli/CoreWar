@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 19:29:12 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/05 20:02:45 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,11 @@ typedef struct	s_ls
 
 typedef struct	s_cw		
 {
-	t_ls		*labels;
+	// t_ls		*labels;
 	t_ls		*tokens;
 	t_ls        *instruct;
 	t_ls        *startnode;
+	char		**labels;
 	char		*bytecode;
 	char		*line;
 	char		*inname;
@@ -103,6 +104,7 @@ typedef struct	s_cw
 typedef struct	s_parse
 {
 	int			i;
+	int			j;
 	short		quotes;
 	int			first_dot:2;
 	int			name:7;
@@ -305,6 +307,8 @@ void			second_part_parse(t_cw *corewar, t_parse *parser, int *i);
 void			space_check(t_cw *corewar, t_parse *parser, int *i);
 void			separator_check(t_cw *corewar, t_parse *parser, int *i);
 void			compare_labels(t_cw *corewar, t_parse *parser);
+void			compare(t_cw *corewar, t_parse *parser, t_ls *arg);
+
 /*
 ** who_is_who.c
 */
