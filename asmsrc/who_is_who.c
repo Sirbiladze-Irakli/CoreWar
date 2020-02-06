@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 19:00:48 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:01:55 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 	{
 		if (ft_isspace(corewar->line[(*i)]) || separators(corewar->line[(*i)]))
 		{
-			// printf("%d\n", parser->args);
 			if (parser->args != 0)
 				instr_arg(corewar, parser, str);
 			else
@@ -49,6 +48,7 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 		process_instr(corewar, parser,  str);
 	else if (str[ft_strlen(str) - 1] == ':')
 	{
+		check_label(corewar, str);
 		tmp = add_node(corewar);
 		tmp->label = LABEL;
 		if (!(corewar->labels[parser->j] = (char *)malloc(sizeof(char)
@@ -60,7 +60,7 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 		parser->j++;
 	}
 	else
-		ft_errors(corewar, parser);        // write func for errors processing
+		ft_errors(corewar, parser);
 }
 
 int				tab(char *str)
@@ -76,11 +76,6 @@ int				tab(char *str)
 
 void			check_instr(t_cw *corewar, t_parse *parser, int *i)
 {
-	// printf("%d args\n", parser->args);
-	// printf("%d commas\n", parser->commas);
-	// printf("%s\n", corewar->lastinstr);
-	// printf("%s\n", corewar->lastarg);
-	// printf("|%c|\n\n", corewar->line[(*i)]);
 	if (parser->args > 0 && parser->commas == (parser->args * -1) 
 		&& corewar->line[(*i)] == '\n')
 		ErrorOut(corewar, ARG_NUM_ERROR);
@@ -88,4 +83,19 @@ void			check_instr(t_cw *corewar, t_parse *parser, int *i)
 		ErrorOut(corewar, END_LINE_ERROR);
 	else if (parser->args == 0 && parser->commas < 0)
 		ft_errors(corewar, parser);
+}
+
+void			check_label(t_cw *corewar, char *str)
+{
+	int			err;
+	regex_t		reg;
+	regmatch_t	pm;
+
+	err = regcomp(&reg, LABEL_PATTERN, REG_EXTENDED);
+	if (regexec(&reg, str, 0, &pm, 0))
+	{
+		regfree(&reg);
+		error_out(corewar, 0);
+		exit(0);
+	}
 }

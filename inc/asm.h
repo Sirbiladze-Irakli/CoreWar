@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 20:02:45 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 20:54:59 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 # define END_LINE_ERROR 403
 # define ARG_NUM_ERROR 404
 # define SEPARATOR_ERROR 405
+# define LABEL_PATTERN "^[0-9a-z_]+:$"
 # define T_REG_PATTERN "^r[0-9]{1,2}$"
 # define T_DIR_PATTERN "^%-?0*[0-9]+$"
 # define T_DIR_LABEL_PATTERN "^%:[0-9a-z_]+$"
@@ -164,6 +165,7 @@ void			check_name(t_ls *tmp);
 */
 
 void			s_compiler(t_cw *corewar, char *av);
+void            define_types(t_cw *corewar, t_ls *tmp);
 
 /*
 ** fill_magic_header.c
@@ -230,7 +232,7 @@ void            how_many_args(t_cw *corewar, t_ls *tmp);
 */
 
 void            champ_code(t_cw *corewar, int out, t_ls *list);
-void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type);
+void			arg_types_fill(t_cw *corewar, t_ls *list, uint8_t *type);
 void            reg_fill(t_cw *corewar, uint8_t *type);
 void            dir_fill(t_cw *corewar, uint8_t *type);
 void            ind_fill(t_cw *corewar, uint8_t *type);
@@ -238,6 +240,12 @@ void            ind_fill(t_cw *corewar, uint8_t *type);
 /*
 ** write_arg.c
 */
+
+void			write_reg(t_cw *corewar, t_ls *tmp);
+void			write_direct(t_cw *corewar, t_ls *tmp);
+void			write_ind(t_cw *corewar, t_ls *tmp);
+void			write_dir_lab(t_cw *corewar, t_ls *tmp);
+void			write_ind_lab(t_cw *corewar, t_ls *tmp);
 
 void            write_args(t_cw *corewar, int out, t_ls *tmp);
 void            first_two_args(t_cw *corewar, int out, t_ls *tmp);
@@ -317,6 +325,7 @@ void			who_is_who(t_cw *corewar, t_parse *parser, int *i);
 void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str);
 int				tab(char *str);
 void			check_instr(t_cw *corewar, t_parse *parser, int *i);
+void			check_label(t_cw *corewar, char *str);
 
 /*
 ** process_instr.c

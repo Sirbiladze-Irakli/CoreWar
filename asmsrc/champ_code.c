@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 12:03:53 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/31 15:49:54 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:36:29 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,46 +14,45 @@
 
 void            champ_code(t_cw *corewar, int out, t_ls *list)
 {
-	t_ls        *tmp;
 	uint8_t     type;
 	char        c;
 
-	tmp = list;
 	type = 0;
-	c = tmp->label;
-	corewar->dir = dir_size(tmp);
+	c = list->label;
+	corewar->dir = dir_size(list);
 	// printf("%d - instrbytes before --->> ", tmp->instrbytes);
-	tmp->instrbytes += codetype(tmp) + 1;
+	list->instrbytes += codetype(list) + 1;
 	// printf("%d - instrbytes\n", tmp->instrbytes);
 	// printf("%d bytes before --->> ", corewar->bytes);
-	corewar->bytes += tmp->instrbytes;
+	corewar->bytes += list->instrbytes;
 	// printf("%d bytes\n", corewar->bytes);
 	write(out, &c, 1);
-	if (tmp->label != LIVE && tmp->label != ZJMP && tmp->label != FORK
-	&& tmp->label != LFORK)
+	if (list->instrbytes == 2)
 	{
-		define_types(corewar, tmp, &type);
+		arg_types_fill(corewar, list, &type);
 		c = type;
 		write(out, &c, 1);
 	}
-	how_many_args(corewar, tmp);
-	write_args(corewar, out, tmp);
 }
 
-void            define_types(t_cw *corewar, t_ls *tmp, uint8_t *type)
+void			arg_types_fill(t_cw *corewar, t_ls *list, uint8_t *type)
 {
+	t_ls		*tmp;
+	int			args;
+
+	tmp = list->next;
+	args = op_tab[list->label].arg_num;
 	corewar->iter = 0;
-	how_many_args(corewar, tmp);
-	while (corewar->counter--)
+	while (args--)
 	{
-		tmp = tmp->next;
-		if (ft_strchr(tmp->token, 'r'))
+		if (tmp->label == REGISTER)
 			reg_fill(corewar, type);
-		else if (ft_strchr(tmp->token, '%'))
+		else if (tmp->label == DIRECT || tmp->label == DIRECT_LABEL)
 			dir_fill(corewar, type);
-		else
+		else if (tmp->label == INDIRECTION || tmp->label == INDIRECT_LABEL)
 			ind_fill(corewar, type);
 		corewar->iter++;
+		tmp = tmp->next;
 	}
 }
 

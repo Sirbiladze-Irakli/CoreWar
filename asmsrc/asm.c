@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 18:48:13 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 19:26:34 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,21 +36,10 @@ void			errors(t_cw *corewar, int var, int shift)
 void			error_out(t_cw *corewar, int var)
 {
 	if (var == 1)
-	{
-		write(1, "Syntax error at token [TOKEN][", 30);
-		ft_putnbr(corewar->eline);
-		write(1, ":", 1);
-		ft_putnbr(corewar->esym);
-		write(1, "] ", 1);
-	}
+		ft_printf("Syntax error at token [TOKEN][%.3d:%.d3] "
+			, corewar->eline, corewar->esym);
 	else
-	{
-		write(1, "Lexical error at [", 18);
-		ft_putnbr(corewar->eline);
-		write(1, ":", 1);
-		ft_putnbr(corewar->esym);
-		write(1, "]", 1);
-	}
+		ft_printf("Lexical error at [%d:%d]\n", corewar->eline, corewar->esym);
 }
 
 void			output(char *str)
@@ -84,7 +73,6 @@ void			init_struct(t_cw *corewar)
 	corewar->labelpos = 0;
 	corewar->eline = 1;
 	corewar->typecode = 0;
-	corewar->iter = 0;
 	corewar->name = 0;
 	corewar->bytes = 0;
 	corewar->comment = 0;

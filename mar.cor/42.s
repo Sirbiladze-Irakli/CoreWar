@@ -1,13 +1,14 @@
 .name           "42"
-.comment        "Just a basic Winner Program"
+.comment        "Just a basic Winn
+er Program"
 
 entree:	live	%42		# entree
-	ld	%0,r5
+	ld	%0,r1
 	ld	%0,r5
 	zjmp	%:bite
 
 tir:	sti	r1,%:tirb,%1
-	ld	%2304,r10
+	ld	%2304,r00
 	ld	%1,r5
 	ld	%0,r11
 
@@ -83,7 +84,7 @@ bite:	sti     r1,%:copie,%2
 	sti	r1,%:b0,%1
 
 	ld	%0,r2
-	ld	%8,r3		# prepare les fork
+	ld	%8,r3		; prepare les fork
 	ld	%1,r4
 	ld	%0,r6
 
@@ -227,7 +228,7 @@ tirdow:	ld	%425,r2
 	ld	%0,r3
 	ld	%4,r4
 
-tird:	live	%42
+	live	%42
 	sti	r10,%:fin,r2
 	sti	r10,%:fin,r3
 	add	r4,r5,r4
@@ -239,3 +240,4 @@ tird:	live	%42
 	zjmp	%:p1
 
 fin:	live	%633
+tird:

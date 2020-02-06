@@ -13,6 +13,31 @@
 
 #include "asm.h"
 
+void			write_reg(t_cw *corewar, t_ls *tmp)
+{
+
+}
+
+void			write_direct(t_cw *corewar, t_ls *tmp)
+{
+
+}
+
+void			write_ind(t_cw *corewar, t_ls *tmp)
+{
+
+}
+
+void			write_dir_lab(t_cw *corewar, t_ls *tmp)
+{
+
+}
+
+void			write_ind_lab(t_cw *corewar, t_ls *tmp)
+{
+
+}
+
 void            write_args(t_cw *corewar, int out, t_ls *tmp)
 {
 	int         res;

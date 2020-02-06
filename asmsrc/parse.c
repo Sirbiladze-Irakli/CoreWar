@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 18:41:57 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:07:37 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			parse(t_cw *corewar)
 	init_parser(&parser);
 	first_part_parse(corewar, &parser, &i);
 	second_part_parse(corewar, &parser, &i);
-	
+	compare_labels(corewar, &parser);
 	// while (corewar->tokens)
 	// {
 	//     printf("\n%p - tokens\n", corewar->tokens);

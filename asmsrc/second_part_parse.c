@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 19:35:03 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 20:08:39 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:28:36 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void            second_part_parse(t_cw *corewar, t_parse *parser, int *i)
 		else
 			who_is_who(corewar, parser, i);
 	}
-	compare_labels(corewar, parser);
 }
 
 void			space_check(t_cw *corewar, t_parse *parser, int *i)
@@ -39,18 +38,17 @@ void			space_check(t_cw *corewar, t_parse *parser, int *i)
 
 void			separator_check(t_cw *corewar, t_parse *parser, int *i)
 {
-
-	parser->commas++;
+	parser->commas--;
 	if (parser->args > 0)
 		parser->comflag = 1;
 	skip_separators(corewar, i);
 	if (corewar->line[(*i)] == ',')
 		ErrorOut(corewar, SEPARATOR_ERROR);
-	if (parser->commas > 0)
+	if (parser->commas < 0)
 		ErrorOut(corewar, END_LINE_ERROR);
 }
 
-void			compare_labels(t_cw *corewar, t_parse *parser)     
+void			compare_labels(t_cw *corewar, t_parse *parser)
 {
 	t_ls		*arg;
 

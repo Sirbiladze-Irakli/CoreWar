@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 17:52:56 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 20:08:12 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 18:28:06 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void			process_instr(t_cw *corewar, t_parse *parser, char *str)
 	parser->comflag = 1;
 	parser->countArgs = 0;
 	parser->args = op_tab[tmp->label].arg_num;
-	if (parser->args > 1)
-		parser->commas = parser->args * -1 + 1;
+	parser->commas = parser->args;
 	corewar->dir = op_tab[tmp->label].dir_size;
 	ft_strcpy(tmp->token, str);
 	ft_strcpy(corewar->lastinstr, str);

@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:32:12 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 19:50:48 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/06 17:03:44 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	            check_dir(t_cw *corewar, t_ls *tmp, char *str)
 	if (!regexec(&reg, str, 0, &pm, 0))
 	{
 		tmp->label = DIRECT;
+		regfree(&lreg);
 		regfree(&reg);
 		return (0);
 	}
@@ -74,6 +75,7 @@ int	            check_dir(t_cw *corewar, t_ls *tmp, char *str)
 	{
 		tmp->label = DIRECT_LABEL;
 		regfree(&lreg);
+		regfree(&reg);
 		return (0);
 	}
 	regfree(&lreg);
@@ -94,12 +96,14 @@ int	            check_ind(t_cw *corewar, t_ls *tmp, char *str)
 	{
 		tmp->label = INDIRECTION;
 		regfree(&reg);
+		regfree(&lreg);
 		return (0);
 	}
 	if (!regexec(&lreg, str, 0, &pm, 0))
 	{
 		tmp->label = INDIRECT_LABEL;
 		regfree(&lreg);
+		regfree(&reg);
 		return (0);
 	}
 	regfree(&lreg);
