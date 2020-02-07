@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:21:26 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/05 19:27:58 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:55:44 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ t_ls			*init_list(t_cw *corewar)
 	list->label = 0;
 	list->args = 0;
 	list->curpos = 0;
+	list->pos = 0;
 	list->instrbytes = 0;
 	list->head = 1;
 	corewar->startnode = list;
@@ -59,6 +60,7 @@ void			add_new_node(t_cw *corewar, t_ls **tmp)
 	(*tmp)->next->args = 0;
 	(*tmp)->next->curpos = 0;
 	(*tmp)->next->head = 0;
+	(*tmp)->next->pos = 0;
 	(*tmp)->next->instrbytes = 0;
 	(*tmp)->next->next = NULL;
 	(*tmp)->next->prev = (*tmp);

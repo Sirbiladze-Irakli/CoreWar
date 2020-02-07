@@ -6,11 +6,36 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:57:36 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/18 14:35:54 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:34:45 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+t_ls			*find_label(t_cw *corewar, t_ls *list, int begin)
+{
+	t_ls		*tmp;
+
+	tmp = corewar->tokens->next->next->next->next;
+	while (tmp->head != 1)
+	{
+		if (tmp->label == LABEL)
+			if (!substrncmp(list->token, tmp->token, begin, corewar->dir))
+				break ;
+		tmp = tmp->next;
+	}
+	return (tmp);
+}
+
+int				calc_range(t_ls *list, t_ls *tmp)
+{
+	t_ls		*instr;
+
+	instr = list;
+	while (instr->label > 16)
+		instr = instr->prev;
+	return tmp->pos - instr->pos;
+}
 
 void            read_name(t_cw *corewar)
 {

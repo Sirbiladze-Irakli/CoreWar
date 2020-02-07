@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:27:06 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:37:50 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/07 17:52:25 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,4 +60,18 @@ void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i)
 		check_comment(val);
 	else
 		check_name(val);
+}
+
+void			circle_closure(t_cw *corewar)
+{
+	t_ls		*head;
+	t_ls		*tail;
+
+	head = corewar->tokens;
+	tail = corewar->tokens;
+	while (tail->next)
+		tail = tail->next;
+	tail->next = head;
+	head->prev = tail;
+		
 }

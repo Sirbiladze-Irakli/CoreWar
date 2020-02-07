@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 18:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 20:54:59 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/07 19:35:28 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct	s_ls
 	int         head;			/*	*/			
 	int         instrbytes;		/*	*/
 	int         args;			/*	*/
+	int			pos;			/*  */
 	struct s_ls	*next;			/*	*/	
 	struct s_ls *prev;			/*	*/
 }				t_ls;			
@@ -159,13 +160,17 @@ int				separators(char c);
 void			new_line(t_cw *corewar);
 void			check_comment(t_ls *tmp);
 void			check_name(t_ls *tmp);
+int				substrncmp(char *dest, char *find, int begin, int n);
 
 /*
 ** s_compiler.c
 */
 
 void			s_compiler(t_cw *corewar, char *av);
-void            define_types(t_cw *corewar, t_ls *tmp);
+void            define_types(t_cw *corewar, int out, t_ls *list);
+void			champ_exec_code_size(t_cw *corewar);
+void			instr_len(t_cw *corewar, t_ls *tmp);
+void			arg_len(t_cw *corewar, t_ls *tmp);
 
 /*
 ** fill_magic_header.c
@@ -191,6 +196,9 @@ void			dot_label(t_cw *corewar, int *i);
 /*
 ** read_and_write.c
 */
+
+t_ls			*find_label(t_cw *corewar, t_ls *list, int begin);
+int				calc_range(t_ls *list, t_ls *tmp);
 
 void			read_name(t_cw *corewar);
 int             codetype(t_ls *tmp);
@@ -241,11 +249,11 @@ void            ind_fill(t_cw *corewar, uint8_t *type);
 ** write_arg.c
 */
 
-void			write_reg(t_cw *corewar, t_ls *tmp);
-void			write_direct(t_cw *corewar, t_ls *tmp);
-void			write_ind(t_cw *corewar, t_ls *tmp);
-void			write_dir_lab(t_cw *corewar, t_ls *tmp);
-void			write_ind_lab(t_cw *corewar, t_ls *tmp);
+void			write_reg(t_cw *corewar, int out, t_ls *list);
+void			write_direct(t_cw *corewar, int out, t_ls *list);
+void			write_ind(t_cw *corewar, int out, t_ls *list);
+void			write_dir_lab(t_cw *corewar, int out, t_ls *list);
+void			write_ind_lab(t_cw *corewar, int out, t_ls *list);
 
 void            write_args(t_cw *corewar, int out, t_ls *tmp);
 void            first_two_args(t_cw *corewar, int out, t_ls *tmp);
@@ -285,6 +293,7 @@ void			ft_join_char_free(char **content, char c);
 void			compare_val(t_cw *corewar, t_parse *parser,
 					char *line, int *i);
 void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i);
+void			circle_closure(t_cw *corewar);
 
 /*
 ** ErrorOut.c

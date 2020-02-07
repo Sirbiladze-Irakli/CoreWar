@@ -13,29 +13,90 @@
 
 #include "asm.h"
 
-void			write_reg(t_cw *corewar, t_ls *tmp)
+void			write_reg(t_cw *corewar, int out, t_ls *list)
 {
+	int			i;
+	int			res;
+	char		reg;
 
+	i = 0;
+	res = 0;
+	while (list->token[++i])
+			res = res * 10 + (list->token[i] - '0');
+		reg = res;
+	write(out, &reg, 1);
 }
 
-void			write_direct(t_cw *corewar, t_ls *tmp)
+void			write_direct(t_cw *corewar, int out, t_ls *list)
 {
+	int			res;
+	int			i;
+	int			shift;
+	char		dir[corewar->dir];
 
+	i = 0;
+	res = 0;
+	shift = 0;
+	ft_bzero(dir, corewar->dir);
+	while (list->token[++i])
+		res = res * 10 + (list->token[i] - '0');
+	i = corewar->dir;
+	while (i--)
+	{
+		dir[i] = (dir[i] |= res) >> shift;
+		shift += 8;
+	}
+	write(out, dir, corewar->dir);
 }
 
-void			write_ind(t_cw *corewar, t_ls *tmp)
+void			write_ind(t_cw *corewar, int out, t_ls *list)
 {
+	int			i;
+	int			res;
+	char		ind[IND_SIZE];
 
+	i = -1;
+	res = 0;
+	ft_bzero(ind, IND_SIZE);
+	while (list->token[++i])
+		res = res * 10 + (list->token[i] - '0');
+	ind[1] |= res;
+	ind[0] |= res >> 8;
+	write(out, ind, IND_SIZE);
 }
 
-void			write_dir_lab(t_cw *corewar, t_ls *tmp)
+void			write_dir_lab(t_cw *corewar, int out, t_ls *list)
 {
+	t_ls		*tmp;
+	int			res;
+	int			i;
+	uint8_t		shift;
+	char		dir[corewar->dir];
 
+	ft_bzero(dir, corewar->dir);
+	tmp = find_label(corewar, list, 2);
+	res = calc_range(list, tmp);
+	i = corewar->dir;
+	shift = 0;
+	while (i--)
+	{
+		dir[i] |= res >> shift;
+		shift += 8;
+	}
+	write(out, dir, corewar->dir);
 }
 
-void			write_ind_lab(t_cw *corewar, t_ls *tmp)
+void			write_ind_lab(t_cw *corewar, int out, t_ls *list)
 {
+	t_ls		*tmp;
+	int			res;
+	char		ind[IND_SIZE];
 
+	tmp = find_label(corewar, list, 1);
+	res = calc_range(list, tmp);
+	ind[1] = res & 255;
+	ind[0] = (res & 65280) >> 8;
+	write(out, ind, IND_SIZE);
 }
 
 void            write_args(t_cw *corewar, int out, t_ls *tmp)
