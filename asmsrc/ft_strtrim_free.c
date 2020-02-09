@@ -6,17 +6,17 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 14:42:24 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/29 14:51:26 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:14:52 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            ft_strtrim_free(char **str)
+void			ft_strtrim_free(char **str)
 {
-    char        *tmp;
+	char		*tmp;
 
-    tmp = ft_strtrim(*str);
-    free(*str);
-    (*str) = tmp;
+	tmp = ft_strtrim(*str);
+	free(*str);
+	(*str) = tmp;
 }

@@ -6,21 +6,13 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 12:51:18 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 18:22:24 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:28:47 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-static int		ft_pow(int nb, int pow)
-{
-	if (pow == 0)
-		return (1);
-	else
-		return (nb * ft_pow(nb, pow - 1));
-}
-
-void            evaluate_instruction(t_cw *corewar, char *token)
+void			evaluate_instruction(t_cw *corewar, char *token)
 {
 	if (ft_strchr(token, '%'))
 	{
@@ -38,7 +30,7 @@ void            evaluate_instruction(t_cw *corewar, char *token)
 	corewar->instruct->instrbytes += IND_SIZE;
 }
 
-int             dir_size(t_ls *tmp)
+int				dir_size(t_ls *tmp)
 {
 	if (tmp->label == LIVE || tmp->label == LD || tmp->label == ST ||
 	tmp->label == ADD || tmp->label == SUB || tmp->label == AND || tmp->label

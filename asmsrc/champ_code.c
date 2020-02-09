@@ -6,26 +6,22 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 12:03:53 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 19:36:29 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:10:44 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            champ_code(t_cw *corewar, int out, t_ls *list)
+void			champ_code(t_cw *corewar, int out, t_ls *list)
 {
-	uint8_t     type;
-	char        c;
+	uint8_t		type;
+	char		c;
 
 	type = 0;
 	c = list->label;
 	corewar->dir = dir_size(list);
-	// printf("%d - instrbytes before --->> ", tmp->instrbytes);
 	list->instrbytes += codetype(list) + 1;
-	// printf("%d - instrbytes\n", tmp->instrbytes);
-	// printf("%d bytes before --->> ", corewar->bytes);
 	corewar->bytes += list->instrbytes;
-	// printf("%d bytes\n", corewar->bytes);
 	write(out, &c, 1);
 	if (list->instrbytes == 2)
 	{
@@ -56,7 +52,7 @@ void			arg_types_fill(t_cw *corewar, t_ls *list, uint8_t *type)
 	}
 }
 
-void            reg_fill(t_cw *corewar, uint8_t *type)
+void			reg_fill(t_cw *corewar, uint8_t *type)
 {
 	if (corewar->iter == 0)
 		(*type) |= 64;
@@ -66,7 +62,7 @@ void            reg_fill(t_cw *corewar, uint8_t *type)
 		(*type) |= 4;
 }
 
-void            dir_fill(t_cw *corewar, uint8_t *type)
+void			dir_fill(t_cw *corewar, uint8_t *type)
 {
 	if (corewar->iter == 0)
 		(*type) |= 128;
@@ -76,7 +72,7 @@ void            dir_fill(t_cw *corewar, uint8_t *type)
 		(*type) |= 8;
 }
 
-void            ind_fill(t_cw *corewar, uint8_t *type)
+void			ind_fill(t_cw *corewar, uint8_t *type)
 {
 	if (corewar->iter == 0)
 		(*type) |= 192;

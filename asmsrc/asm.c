@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:38:51 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 19:26:34 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:14:37 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void			error_out(t_cw *corewar, int var)
 		ft_printf("Syntax error at token [TOKEN][%.3d:%.d3] "
 			, corewar->eline, corewar->esym);
 	else
+	{
 		ft_printf("Lexical error at [%d:%d]\n", corewar->eline, corewar->esym);
+		exit(0);
+	}
 }
 
 void			output(char *str)
@@ -58,7 +61,7 @@ void			init_struct(t_cw *corewar)
 	if (!(corewar->inname = (char *)malloc(sizeof(char) * PROG_NAME_LENGTH)))
 		output("Can't allocate a memory");
 	if (!(corewar->labels = (char **)malloc(sizeof(char *)
-		* (CHAMP_MAX_SIZE/2))))
+		* (CHAMP_MAX_SIZE / 2))))
 		output("Can't alloceta a memory");
 	ft_bzero(corewar->lastinstr, 5);
 	ft_bzero(corewar->lastarg, 30);
@@ -90,7 +93,7 @@ void			init_struct(t_cw *corewar)
 int				main(int ac, char **av)
 {
 	t_cw	corewar;
-	
+
 	if (ac < 2 || ac > 2)
 		output("usage : ./asm champion.s\n");
 	init_struct(&corewar);

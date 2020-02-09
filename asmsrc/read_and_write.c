@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:57:36 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/07 19:34:45 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 17:00:22 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ t_ls			*find_label(t_cw *corewar, t_ls *list, int begin)
 	while (tmp->head != 1)
 	{
 		if (tmp->label == LABEL)
-			if (!substrncmp(list->token, tmp->token, begin, corewar->dir))
+			if (!substrncmp(list->token, tmp->token, begin,
+			ft_strlen(list->token) - begin))
 				break ;
 		tmp = tmp->next;
 	}
@@ -34,13 +35,13 @@ int				calc_range(t_ls *list, t_ls *tmp)
 	instr = list;
 	while (instr->label > 16)
 		instr = instr->prev;
-	return tmp->pos - instr->pos;
+	return (tmp->pos - instr->pos);
 }
 
-void            read_name(t_cw *corewar)
+void			read_name(t_cw *corewar)
 {
-	int		i;
-	int		quotes;
+	int			i;
+	int			quotes;
 
 	i = -1;
 	quotes = 0;
@@ -49,7 +50,7 @@ void            read_name(t_cw *corewar)
 		if (corewar->line[corewar->esym] == '"')
 			break ;
 	quotes++;
-	while(corewar->line[++corewar->esym])
+	while (corewar->line[++corewar->esym])
 	{
 		if (corewar->line[corewar->esym] == '"')
 		{
@@ -64,16 +65,16 @@ void            read_name(t_cw *corewar)
 		errors(corewar, 2, 0);
 }
 
-int             codetype(t_ls *tmp)
+int				codetype(t_ls *tmp)
 {
 	if (tmp->label == LIVE || tmp->label == ZJMP || tmp->label == FORK
 	|| tmp->label == LFORK)
-		return(0);
+		return (0);
 	else
-		return(1);
+		return (1);
 }
 
-void            count_args(t_cw *corewar, t_ls *tmp)
+void			count_args(t_cw *corewar, t_ls *tmp)
 {
 	corewar->iter = 0;
 	how_many_args(corewar, tmp);

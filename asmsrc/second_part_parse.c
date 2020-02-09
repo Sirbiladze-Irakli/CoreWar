@@ -6,18 +6,19 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 19:35:03 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 18:28:36 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 17:57:33 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            second_part_parse(t_cw *corewar, t_parse *parser, int *i)
+void			second_part_parse(t_cw *corewar, t_parse *parser, int *i)
 {
 	while (corewar->line[(*i)])
 	{
+		printf("%c", corewar->line[(*i)]);
 		if (parser->commas == (parser->args * -1 - 2))
-			ft_errors(corewar, parser);
+			ft_errors(corewar);
 		if (ft_isspace(corewar->line[(*i)]))
 			space_check(corewar, parser, i);
 		else if (separators(corewar->line[(*i)]))
@@ -43,9 +44,9 @@ void			separator_check(t_cw *corewar, t_parse *parser, int *i)
 		parser->comflag = 1;
 	skip_separators(corewar, i);
 	if (corewar->line[(*i)] == ',')
-		ErrorOut(corewar, SEPARATOR_ERROR);
+		errors_out(corewar, SEPARATOR_ERROR);
 	if (parser->commas < 0)
-		ErrorOut(corewar, END_LINE_ERROR);
+		errors_out(corewar, END_LINE_ERROR);
 }
 
 void			compare_labels(t_cw *corewar, t_parse *parser)
@@ -64,27 +65,22 @@ void			compare_labels(t_cw *corewar, t_parse *parser)
 
 void			compare(t_cw *corewar, t_parse *parser, t_ls *arg)
 {
-	char		*toFind;
+	char		*to_find;
 
 	parser->j = 0;
 	if (arg->label == DIRECT_LABEL)
-		toFind = ft_strsub(arg->token, 2, ft_strlen(arg->token) - 1);	
+		to_find = ft_strsub(arg->token, 2, ft_strlen(arg->token) - 1);
 	else if (arg->label == INDIRECT_LABEL)
-		toFind = ft_strsub(arg->token, 1, ft_strlen(arg->token) - 1);
+		to_find = ft_strsub(arg->token, 1, ft_strlen(arg->token) - 1);
 	while (corewar->labels[parser->j])
 	{
-		if (!ft_strcmp(toFind, corewar->labels[parser->j++]))
+		if (!ft_strcmp(to_find, corewar->labels[parser->j++]))
 		{
-			free(toFind);
+			free(to_find);
 			return ;
 		}
 	}
-	wrong_instr(corewar, arg, toFind);
-	free(toFind);
+	wrong_instr(arg, to_find);
+	free(to_find);
 	exit(0);
 }
-
-// void			wrong_way(t_cw *corewar, t_parse *parser, t_ls *tmp, char *str)
-// {
-	
-// }

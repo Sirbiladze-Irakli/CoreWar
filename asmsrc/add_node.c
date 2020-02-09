@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 16:21:26 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/07 17:55:44 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:05:24 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ t_ls			*add_node(t_cw *corewar)
 	{
 		while (tmp->next)
 			tmp = tmp->next;
-		add_new_node(corewar, &tmp);
-        return (tmp->next);
+		add_new_node(&tmp);
+		return (tmp->next);
 	}
 	return (tmp);
 }
@@ -50,11 +50,12 @@ t_ls			*init_list(t_cw *corewar)
 	return (list);
 }
 
-void			add_new_node(t_cw *corewar, t_ls **tmp)
+void			add_new_node(t_ls **tmp)
 {
 	if (!(((*tmp)->next) = (t_ls *)malloc(sizeof(t_ls))))
 		output("Can't allocate a memory");
-	if (!((*tmp)->next->token = (char *)malloc(sizeof(char) * (COMMENT_LENGTH + 1000))))
+	if (!((*tmp)->next->token = (char *)malloc(sizeof(char)
+		* (COMMENT_LENGTH + 1000))))
 		output("Can't allocate a memory");
 	(*tmp)->next->label = 0;
 	(*tmp)->next->args = 0;
@@ -75,8 +76,3 @@ t_ls			*last_node(t_cw *corewar)
 		tmp = tmp->next;
 	return (tmp);
 }
-
-// void			prepare_node(t_cw *corewar)
-// {
-// 	add_node(corewar);
-// }

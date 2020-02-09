@@ -6,7 +6,7 @@
 #    By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/12 15:03:28 by jormond-          #+#    #+#              #
-#    Updated: 2020/02/04 18:45:22 by jormond-         ###   ########.fr        #
+#    Updated: 2020/02/09 18:12:39 by jormond-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,15 @@ INC = ./inc/op.h ./inc/asm.h ./inc/cmd_op.h
 
 LIB = ft_printf/libftprintf.a
 
-# FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror
 
 ASMFILES = asm.c arg_reader.c s_compiler.c fill_magic_header.c tools.c \
 			take_tokens.c get_next_line.c read_and_write.c parse.c add_node.c \
-			add_token.c champ_code.c write_args.c third_arg.c errors.c \
-			ft_join_char_free.c compare_val.c ErrorOut.c bad_line.c op.c \
+			add_token.c champ_code.c write_args.c errors.c third_arg.c \
+			ft_join_char_free.c compare_val.c error_out.c bad_line.c op.c \
 			write_anything.c second_part_parse.c who_is_who.c process_instr.c \
-			ft_strtrim_free.c tools2.c right_arg.c right_arg2.c error.c
+			ft_strtrim_free.c tools2.c right_arg.c right_arg2.c error.c \
+			tools3.c
 
 ASMSRC = $(addprefix asmsrc/,$(ASMFILES))
 

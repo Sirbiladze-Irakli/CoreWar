@@ -6,15 +6,15 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 19:01:55 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:15:14 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
+void			who_is_who(t_cw *corewar, t_parse *parser, int *i)
 {
-	char        *str;
+	char		*str;
 
 	str = ft_strnew(1);
 	while (corewar->line[(*i)])
@@ -26,7 +26,7 @@ void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 			else
 			{
 				ft_strtrim_free(&str);
-				define_str(corewar, parser, i, str);
+				define_str(corewar, parser, str);
 			}
 			free(str);
 			return ;
@@ -38,14 +38,13 @@ void            who_is_who(t_cw *corewar, t_parse *parser, int *i)
 	free(str);
 }
 
-void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
+void			define_str(t_cw *corewar, t_parse *parser, char *str)
 {
 	t_ls		*tmp;
-	t_ls		*labels;
-	
+
 	tmp = corewar->tokens;
 	if (tab(str))
-		process_instr(corewar, parser,  str);
+		process_instr(corewar, parser, str);
 	else if (str[ft_strlen(str) - 1] == ':')
 	{
 		check_label(corewar, str);
@@ -60,7 +59,7 @@ void			define_str(t_cw *corewar, t_parse *parser, int *i, char *str)
 		parser->j++;
 	}
 	else
-		ft_errors(corewar, parser);
+		ft_errors(corewar);
 }
 
 int				tab(char *str)
@@ -70,19 +69,19 @@ int				tab(char *str)
 	i = 0;
 	while (++i < 17)
 		if (!ft_strcmp(op_tab[i].instr, str))
-			return i;
-	return 0;
+			return (i);
+	return (0);
 }
 
 void			check_instr(t_cw *corewar, t_parse *parser, int *i)
 {
-	if (parser->args > 0 && parser->commas == (parser->args * -1) 
+	if (parser->args > 0 && parser->commas == (parser->args * -1)
 		&& corewar->line[(*i)] == '\n')
-		ErrorOut(corewar, ARG_NUM_ERROR);
+		errors_out(corewar, ARG_NUM_ERROR);
 	else if (parser->args > 0 && corewar->line[(*i)] == '\n')
-		ErrorOut(corewar, END_LINE_ERROR);
+		errors_out(corewar, END_LINE_ERROR);
 	else if (parser->args == 0 && parser->commas < 0)
-		ft_errors(corewar, parser);
+		ft_errors(corewar);
 }
 
 void			check_label(t_cw *corewar, char *str)
@@ -96,6 +95,7 @@ void			check_label(t_cw *corewar, char *str)
 	{
 		regfree(&reg);
 		error_out(corewar, 0);
-		exit(0);
+		exit(0);`
 	}
+	regfree(&reg);
 }

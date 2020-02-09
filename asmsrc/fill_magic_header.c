@@ -6,17 +6,17 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/17 14:27:05 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/31 20:03:59 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 15:03:05 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			fill_magic_header(t_cw *corewar, int out)
+void			fill_magic_header(int out)
 {
-	unsigned char	tmp[4];
-	int				size;
-	uint8_t			i;
+	char		tmp[4];
+	int			size;
+	uint8_t		i;
 
 	size = 4;
 	i = 0;
@@ -28,11 +28,11 @@ void			fill_magic_header(t_cw *corewar, int out)
 	write(out, tmp, sizeof(tmp));
 }
 
-void            fill_name(t_cw *corewar, int out)
+void			fill_name(t_cw *corewar, int out)
 {
-	t_ls            *list;
-	unsigned char   tmp[PROG_NAME_LENGTH];
-	int             size;
+	t_ls		*list;
+	char		tmp[PROG_NAME_LENGTH];
+	size_t		size;
 
 	size = 0;
 	list = corewar->tokens;
@@ -56,10 +56,10 @@ void            fill_name(t_cw *corewar, int out)
 	write(out, tmp, PROG_NAME_LENGTH);
 }
 
-void            fill_null(int out)
+void			fill_null(int out)
 {
-	unsigned char   tmp[4];
-	int             size;
+	char		tmp[4];
+	int			size;
 
 	size = 0;
 	while (size < 4)
@@ -67,9 +67,9 @@ void            fill_null(int out)
 	write(out, tmp, 4);
 }
 
-void            champ_size(t_cw *corewar, int out)
+void			champ_size(t_cw *corewar, int out)
 {
-	char            tmp[4];
+	char		tmp[4];
 
 	tmp[3] = corewar->res & 255;
 	tmp[2] = (corewar->res & 65280) >> 8;
@@ -78,11 +78,11 @@ void            champ_size(t_cw *corewar, int out)
 	write(out, tmp, 4);
 }
 
-void            fill_comment(t_cw *corewar, int out)
+void			fill_comment(t_cw *corewar, int out)
 {
-	t_ls            *list;
-	unsigned char   tmp[COMMENT_LENGTH];
-	int             size;
+	t_ls		*list;
+	char		tmp[COMMENT_LENGTH];
+	size_t		size;
 
 	size = 0;
 	list = corewar->tokens;
@@ -105,19 +105,3 @@ void            fill_comment(t_cw *corewar, int out)
 	}
 	write(out, tmp, COMMENT_LENGTH);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -6,16 +6,16 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 17:15:30 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/04 18:38:35 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:20:39 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			bad_line(t_cw *corewar, t_parse *parser, int *i)
+void			bad_line(t_cw *corewar, int *i)
 {
 	char		*str;
-	
+
 	str = ft_strnew(1);
 	while (corewar->line[(*i)])
 	{
@@ -28,20 +28,20 @@ void			bad_line(t_cw *corewar, t_parse *parser, int *i)
 		(*i)++;
 	}
 	if (!ft_strcmp(str, ".name"))
-		ErrorOut(corewar, NAME_ERROR);
+		errors_out(corewar, NAME_ERROR);
 	if (!ft_strcmp(str, ".comment"))
-		ErrorOut(corewar, COMMENT_ERROR);
+		errors_out(corewar, COMMENT_ERROR);
 	else
-		ErrorOut(corewar, LEXICAL);
+		errors_out(corewar, LEXICAL);
 	free(str);
 }
 
-void			before_new_line(t_cw *corewar, t_parse *parser, int *i)
+void			before_new_line(t_cw *corewar, int *i)
 {
 	char		*str;
 	char		*tmp;
 	int			flag;
-	
+
 	flag = 0;
 	str = ft_strnew(1);
 	(*i)++;
@@ -55,11 +55,11 @@ void			before_new_line(t_cw *corewar, t_parse *parser, int *i)
 	tmp = ft_strtrim(str);
 	free(str);
 	str = tmp;
-	check_str(corewar, parser, str);
+	check_str(corewar, str);
 	free(str);
 }
 
-void			check_str(t_cw *corewar, t_parse *parser, char *str)
+void			check_str(t_cw *corewar, char *str)
 {
 	if (str[0] == '%' && str[1] == ':')
 		ft_printf("Syntax error at token [TOKEN][%.3d:%.3d] \

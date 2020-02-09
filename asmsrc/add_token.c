@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/12 15:11:08 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/18 16:11:19 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 17:12:45 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,13 @@
 
 void			add_token(t_cw *corewar, int *i)
 {
-    int         j;
-    t_ls        *tmp;
+	int			j;
+	t_ls		*tmp;
 
-    j = -1;
-    tmp = add_node(corewar);
-	while (!(separators(corewar->line[(*i)])) && !(ft_isspace(corewar->line[(*i)])))
+	j = -1;
+	tmp = add_node(corewar);
+	while (!(separators(corewar->line[(*i)])) &&
+		!(ft_isspace(corewar->line[(*i)])))
 	{
 		tmp->token[++j] = corewar->line[(*i)++];
 		corewar->esym++;
@@ -27,14 +28,13 @@ void			add_token(t_cw *corewar, int *i)
 	(*i)++;
 }
 
-void			define_labels(t_cw *corewar)  // wrong dir size!
+void			define_labels(t_cw *corewar)
 {
-	t_ls        *tmp;
+	t_ls		*tmp;
 
 	tmp = corewar->tokens;
 	while (tmp)
 	{
-		// printf("%s\n", tmp->token);
 		if (corewar->counter != 0)
 		{
 			if (corewar->typecode != 0)
@@ -44,14 +44,14 @@ void			define_labels(t_cw *corewar)  // wrong dir size!
 			corewar->counter--;
 		}
 		else if (tmp->label == 0 && corewar->counter == 0)
-			fill_label(corewar, tmp);
+			fill_label(tmp);
 		if (tmp->label > 0 && tmp->label < 17)
 			count_args(corewar, tmp);
 		tmp = tmp->next;
 	}
 }
 
-void            fill_label(t_cw *corewar, t_ls *tmp)
+void			fill_label(t_ls *tmp)
 {
 	if (tmp->token[ft_strlen(tmp->token) - 1] == ':')
 		tmp->label = LABEL;
@@ -70,10 +70,10 @@ void            fill_label(t_cw *corewar, t_ls *tmp)
 	else if (!(ft_strcmp(tmp->token, "or")))
 		tmp->label = OR;
 	else
-		fill_label2(corewar, tmp);
+		fill_label2(tmp);
 }
 
-void            fill_label2(t_cw *corewar, t_ls *tmp)
+void			fill_label2(t_ls *tmp)
 {
 	if (!(ft_strcmp(tmp->token, "fork")))
 		tmp->label = FORK;
@@ -95,7 +95,7 @@ void            fill_label2(t_cw *corewar, t_ls *tmp)
 		tmp->label = ZJMP;
 }
 
-void            how_many_args(t_cw *corewar, t_ls *tmp)
+void			how_many_args(t_cw *corewar, t_ls *tmp)
 {
 	if (tmp->label == LIVE || tmp->label == ZJMP || tmp->label == FORK
 	|| tmp->label == LFORK || tmp->label == AFF)
@@ -106,5 +106,4 @@ void            how_many_args(t_cw *corewar, t_ls *tmp)
 	|| tmp->label == OR || tmp->label == XOR || tmp->label == LDI ||
 	tmp->label == STI || tmp->label == LLDI)
 		corewar->counter = 3;
-
 }

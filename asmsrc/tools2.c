@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/31 15:33:34 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/07 18:54:20 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:27:40 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,10 @@ int				substrncmp(char *dest, char *find, int begin, int n)
 	int			i;
 
 	i = 0;
+	if ((ft_strlen(find) - 1) != (size_t)n)
+		return (1);
 	while (i < n)
 		if (dest[begin++] != find[i++])
 			return (1);
 	return (0);
-	
 }

@@ -6,39 +6,39 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 18:32:12 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/06 17:03:44 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:24:58 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void			distrib2(t_cw *corewar, t_ls *tmp, char *str, char flag)
+void			distrib2(t_ls *tmp, char *str, char flag)
 {
 	int			res;
 
 	res = 0;
 	if (flag == '5')
 	{
-		res = check_ind(corewar, tmp, str);
+		res = check_ind(tmp, str);
 		if (res == 0)
 			return ;
-		res = check_dir(corewar, tmp, str);
+		res = check_dir(tmp, str);
 	}
 	else if (flag == '6')
 	{
-		res = check_reg(corewar, tmp, str);
+		res = check_reg(tmp, str);
 		if (res == 0)
 			return ;
-		res = check_dir(corewar, tmp, str);
+		res = check_dir(tmp, str);
 		if (res == 0)
 			return ;
-		res = check_ind(corewar, tmp, str);
+		res = check_ind(tmp, str);
 	}
 	if (res > 0)
-		wrong_instr(corewar, tmp, str);
+		wrong_instr(tmp, str);
 }
 
-int	            check_reg(t_cw *corewar, t_ls *tmp, char *str)
+int				check_reg(t_ls *tmp, char *str)
 {
 	int			error;
 	regex_t		reg;
@@ -55,7 +55,7 @@ int	            check_reg(t_cw *corewar, t_ls *tmp, char *str)
 	return (1);
 }
 
-int	            check_dir(t_cw *corewar, t_ls *tmp, char *str)
+int				check_dir(t_ls *tmp, char *str)
 {
 	int			error;
 	regex_t		reg;
@@ -83,7 +83,7 @@ int	            check_dir(t_cw *corewar, t_ls *tmp, char *str)
 	return (1);
 }
 
-int	            check_ind(t_cw *corewar, t_ls *tmp, char *str)
+int				check_ind(t_ls *tmp, char *str)
 {
 	int			error;
 	regex_t		reg;

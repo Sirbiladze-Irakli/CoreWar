@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:27:06 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/07 17:52:25 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:55:34 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void			compare_val(t_cw *corewar, t_parse *parser, char *line, int *i)
 		command_val(corewar, tmp, parser, i);
 	}
 	else
-		ErrorOut(corewar, LEXICAL);
+		errors_out(corewar, LEXICAL);
 }
 
 void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i)
@@ -73,5 +73,4 @@ void			circle_closure(t_cw *corewar)
 		tail = tail->next;
 	tail->next = head;
 	head->prev = tail;
-		
 }

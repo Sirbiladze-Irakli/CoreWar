@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 15:02:16 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/07 19:50:42 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 17:58:39 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,9 @@ void			parse(t_cw *corewar)
 {
 	int			i;
 	t_parse		parser;
-	t_ls		*tmp;
 
 	i = 0;
-	check_EOF(corewar, &i);
+	check_eof(corewar);
 	init_parser(&parser);
 	first_part_parse(corewar, &parser, &i);
 	second_part_parse(corewar, &parser, &i);
@@ -27,28 +26,6 @@ void			parse(t_cw *corewar)
 	circle_closure(corewar);
 	corewar->res = 0;
 	champ_exec_code_size(corewar);
-
-	tmp = corewar->tokens->next->next->next->next;
-	while (tmp->head != 1)
-	{
-		printf("%s\t\t%d\n", tmp->token, tmp->pos);
-		tmp = tmp->next;
-	}
-	// while (corewar->tokens)
-	// {
-	//     printf("\n%p - tokens\n", corewar->tokens);
-	// 	printf("|%s| - value\n", corewar->tokens->token);
-	// 	printf("%d - label\n", corewar->tokens->label);
-	// 	if (corewar->tokens->next == NULL)
-	// 		break ;
-	//     corewar->tokens = corewar->tokens->next;
-	// }
-	// while (corewar->tokens)
-	// {
-	// 	if (corewar->tokens->prev == NULL)
-	// 		break ;
-	// 	corewar->tokens = corewar->tokens->prev;
-	// }
 }
 
 void			init_parser(t_parse *parser)
@@ -63,7 +40,7 @@ void			init_parser(t_parse *parser)
 	parser->order = 0;
 	parser->commas = 0;
 	parser->comflag = 0;
-	parser->countArgs = 0;
+	parser->countargs = 0;
 }
 
 void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)
@@ -80,7 +57,7 @@ void			first_part_parse(t_cw *corewar, t_parse *parser, int *i)
 			&& parser->name == 1)
 			return ;
 		else if (!ft_isspace(corewar->line[(*i)]))
-			write_anything(corewar, parser, i);
+			write_anything(corewar, i);
 		if (corewar->line[(*i)] == '\n')
 			new_line(corewar);
 		corewar->esym++;
@@ -96,7 +73,7 @@ void			command(t_cw *corewar, t_parse *parser, int *i)
 		|| parser->name != 1))
 		fill_commands(corewar, parser, i);
 	else if (parser->comment >= 1 && parser->name >= 1)
-		bad_line(corewar, parser, i);
+		bad_line(corewar, i);
 }
 
 void			fill_commands(t_cw *corewar, t_parse *parser, int *i)
@@ -118,6 +95,6 @@ void			fill_commands(t_cw *corewar, t_parse *parser, int *i)
 		(*i)++;
 	}
 	compare_val(corewar, parser, line, i);
-	before_new_line(corewar, parser, i);
+	before_new_line(corewar, i);
 	free(line);
 }

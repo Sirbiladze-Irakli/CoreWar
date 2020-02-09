@@ -6,15 +6,15 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/12 15:30:14 by jormond-          #+#    #+#             */
-/*   Updated: 2020/01/29 17:30:25 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 16:06:03 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
 
-void            s_reader(t_cw *corewar, char *av)
+void			s_reader(t_cw *corewar, char *av)
 {
-	char	*ext;
+	char		*ext;
 
 	if (!(ext = ft_strrchr(av, '.')))
 		output("Can't read input file\n");
@@ -27,7 +27,7 @@ void            s_reader(t_cw *corewar, char *av)
 
 void			cor_reader(t_cw *corewar, char *av)
 {
-	char	*ext;
+	char		*ext;
 
 	if (!(ext = ft_strrchr(av, '.')))
 		output("Can't read input file\n");
