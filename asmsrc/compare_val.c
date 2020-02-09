@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/20 13:27:06 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/09 16:55:34 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:44:22 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void			command_val(t_cw *corewar, t_ls *tmp, t_parse *parser, int *i)
 	str = ft_strnew(1);
 	while (corewar->line[(*i)])
 	{
+		if (corewar->line[(*i)] == '\n')
+			errors_out(corewar, END_LINE_ERROR);
 		if (corewar->line[(*i)] == '"' && parser->quotes == 0)
 			parser->quotes = 1;
 		else if (corewar->line[(*i)] == '"' && parser->quotes == 1)

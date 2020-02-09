@@ -6,7 +6,7 @@
 /*   By: jormond- <jormond-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 14:22:00 by jormond-          #+#    #+#             */
-/*   Updated: 2020/02/09 18:15:14 by jormond-         ###   ########.fr       */
+/*   Updated: 2020/02/09 18:25:08 by jormond-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void			check_label(t_cw *corewar, char *str)
 	{
 		regfree(&reg);
 		error_out(corewar, 0);
-		exit(0);`
+		exit(0);
 	}
 	regfree(&reg);
 }
